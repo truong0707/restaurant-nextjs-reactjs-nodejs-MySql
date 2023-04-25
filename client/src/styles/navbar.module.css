@@ -1,0 +1,172 @@
+.toolbar__navigation {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    padding: 0 1rem; /* khoản cách trái phải */
+}
+.toolbar {
+    --nav-load-time: 400ms;
+    --nav-link-load-time: 500ms;
+    position: fixed;
+    width: 100%;
+    background-color: #BF014B;
+    height: 57px;
+    left: 0;
+    top: 0;
+    z-index: 3; /* cấp đồ đè lên nhau */
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.1);
+    /* ease-in  :  chậm khi bắt đầu và nhanh đột ngột khi kết thúc */
+    /* ease-out :  nhanh đột ngột khi bắt đầu, chậm khi kết thúc */
+    animation: nav-load var(--nav-load-time) ease-in; /* đặt tên cho animation  */ /*  tốc đọ trượt */
+}
+.toolbar__logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+.toolbar__navigation_items ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.toolbar__navigation_items ul li {
+    line-height: 30px;
+    width: 85px;
+    text-align: center;
+    animation-name: nav-link-load;
+    animation-duration: var(--nav-link-load-time);
+    animation-timing-function: ease-in;
+    animation-delay: var(--nav-link-load-time);
+    /*  */
+    animation-fill-mode: forwards;
+    transform: scale(0);
+}
+.toolbar__navigation_items ul li:hover {
+    border-bottom: 1px solid #fff ;
+}
+.toolbar__navigation_items li {
+    padding: 0 0.5rem;
+}
+.toolbar__navigation_items ul .item__bar {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+}
+.spacer {
+    width: 25%;
+}
+
+/* icon hiển thị thanh kẹp */
+.icon-drawer {
+    font-size: 20px;
+    color: #fff;
+}
+
+.toolbar__navigation_user_store ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* phần nav login */
+.toolbar__navigation_user_store ul li {
+    line-height: 50px;
+    width: 65px;
+    text-align: center;
+}
+.toolbar__navigation_user_store li {
+    padding: 0 0.5rem;
+}
+
+.toolbar__navigation_user_store ul .item__bar {
+    color: #fff;
+    text-decoration: none;
+}
+.toolbar__navigation_user_store ul .item__bar:hover {
+    color: coral;
+}
+.faBar {
+    display: block;
+}
+.avatar__user {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile {
+    cursor: pointer;
+}
+
+/* nav */
+.toolbar__navigation {
+    display: flex;
+    margin-top: 14px;
+}
+
+.toolbar__navigation li {
+    list-style: none;
+    margin-left: 20px;
+    min-width: 50px;
+}
+
+/*  */
+@keyframes nav-load {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes nav-link-load {
+    0% {
+        transform: scale(0);
+    }
+
+    90% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* tablet */
+@media only screen and (max-width: 53.9375em) {
+    /* .faBar {
+        display: block;
+    } */
+    .toolbar__navigation_items {
+        display: none;
+    }
+}
+.item__count {
+    position: fixed;
+    top: 1px;
+    right: 85px;
+    color: rgb(7, 170, 80);
+    width: 19px;
+    text-align: center;
+    height: 17px;
+    background-color: rgb(236, 230, 147);
+    border-radius: 45%;
+}
+.item__count span {
+    position: absolute;
+    top: -16px;
+    right: 5px;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 573px) {
+    .profile {
+        display: none;
+    }
+}

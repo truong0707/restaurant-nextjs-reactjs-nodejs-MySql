@@ -1,0 +1,17 @@
++ .gitignore giúp ta chừa những file ta ko muốn đẩy lên git
++ config là nơi cấu hình các tham số và hệ thống
++ .babelrc để nó biên dịch ES mới về ES cũ
++ Views engine
++ static file : những file mà nó cho phép trình dùng ở phía trình duyệt nó có thể truy cập được
++ file môi trường: .env
+---> đối với node js, để sử dụng .env ta phải sử dung thư viện : dotenv
+
+/// Mô hình MVC
++ router nó sẽ gọi đến controller
++ controller : là file nhận những req (những yêu cầu của người dùng) gửi lên , nếu mà nó cầu giữ liệu thì nó 
+sẽ gọi đến thằng model
++ Model là nơi kết nối trực tiếp đến data base
++ Sau khi controller kết nối với model để lấy dữ liệu thì nó sẽ trả lại Views cùng với giũ liệu
+--- Trả lại thông tin cho người dùng
+
+1. trong api, tên param đc đặt chính là thuộc tính param trong req.params

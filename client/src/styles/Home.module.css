@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+/* Home Page */
+.header_home {
+    margin: auto;
+    width: 90%;
+    min-height: 900px;
+}
+.sponsor {
+    width: 35%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr)
+}
+.sponsor li img {
+    width: 100px;
+}
+.sponsor li {
+    list-style: none;
+    margin-right: 30px
+}
+.sponsor  {
+    margin-bottom: 100px;
+}
+.wrap_home .main_img {
+    width: 100%;
+}
+.wrap_home {
+    position: relative;
+    width: 100%;
+    float: right;
+    background: pink;
+    background: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hoa-van-nen-trang-dep_035540612.jpg") center;
+    /* background-size: cover; */
+    min-height: 2000px;
+    margin-top: 33px;
+}
+.Box_go_menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px
+}
+.Box_go_menu div {
+    border-radius: 5px;
+    /* width: 550px; */
+    height: 240px;
+    list-style: none;
+    padding: 25px;
+}
+.Box_go_menu .food {
+    background: #EBCFB3;
+    left: 0;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 90px;
+}
+.Box_go_menu .drink {
+    background: #BF014B;
+    right: 0;
+    position: relative
+}
+.wrap_home .box_introduce {
+    padding: 0;
+    width: 90%;
+    min-height: 400px;
+    margin: auto;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    border-top: 2px solid #BF014B;
+    padding-top: 28px;
+
+}
+.box_introduce2 {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    min-height: 400px;
+    margin: auto;
+    color: #fff;
+
+}
+.wrap_home .box_introduce .first {
+    list-style: none;
+}
+.wrap_home .box_introduce .second {
+    list-style: none;
+}
+.wrapp__chefFamous_home {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 70px;
+    margin-top: 50px;
+    border-top: 2px solid #BF014B;
+}
+.wrapp__chefFamous_home h2 {
+    color: #fff;
+    padding: 18px;
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+.box_introduce .first .btn_more {
+    background: #D30052;
+    width: 180px;
+    height: 50px;
+    padding: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*  */
+.btn_more {
+    background: #D30052;
+    width: 180px;
+    height: 50px;
+    padding: 2%;
+    border-radius: 5px;
+    cursor: pointer; 
+    color: #fff;
+}
+.box_introduce .second iframe {
+    width: 80%;
+    float: right;
+    height: 275px;
+}
+.Box_go_menu .food .image {
+    max-width: 200px;
+    position: absolute;
+    right: 0;
+    top: 17.2%;
+}
+.Box_go_menu .drink .image {
+    max-width: 160px;
+    position: absolute;
+    right: -11px;
+    top: 5.2%;
+}
+
+.GRItem {
+    transition: .35s;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+
+}
+.GRItem .items {
+    width: 100%;
+    border-radius: 5px;
+ 
+}
+.GRItem:hover > :not(:hover){
+    opacity: 0.4;
+    transform: scale(0.9)
+}
+
+.backdrop {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0px);
+    position: absolute;
+    top: 0;
+}
+
+/* responsive */
+/* Mobile: width < 740px */
+@media only screen and (max-width: 46.1875em) {
+    .Box_go_menu {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .wrap_home .box_introduce {
+        grid-template-columns: repeat(1, 1fr);
+        float: none;
+    }
+
+    .wrap_home .box_introduce .first {
+        margin-top: 30px;
+    }
+
+    .Box_go_menu .drink {
+        margin-bottom: 40px;
+    }
+    .Box_go_menu .food {
+        margin-bottom: 0;
+    }
+}
+
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+
+}
+
+@media only screen and (min-width: 46.25em) and (max-width: 1115px) {
+    .Box_go_menu .drink .image {
+        max-width: 150px;
+        position: absolute;
+        right: -11px;
+        top: 11.66%;
+    }
+    .Box_go_menu .food .image {
+        max-width: 200px;
+    }
+    .box_introduce .second iframe {
+        width: 100%;
+    }
+}
+
+/* Cả Mobile & tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em) {
+    .box_introduce .first p {
+        text-align: justify;
+    }
+    .box_introduce .second iframe {
+        width: 100%;
+    }
+}
+
+
+/* Reposive Home Page */
+@media only screen and (max-width: 430px) {
+    .Box_go_menu .food .image {
+        max-width: 140px;
+        position: absolute;
+        right: 0;
+        top: 42.2%;
+    }
+    .Box_go_menu .drink .image {
+        max-width: 140px;
+        position: absolute;
+        right: -11px;
+        top: 17.2%;
+    }
+    .box_introduce .first p {
+        text-align: justify;
+    }
+    .sponsor {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px;
+    }
+    .box_introduce .second iframe {
+        width: 100%;
+    }
+}
