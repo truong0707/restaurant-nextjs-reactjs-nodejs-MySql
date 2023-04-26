@@ -1,0 +1,40 @@
+/* SideDrawer */
+.side_drawer {
+    background: #fff;
+    height: 100%;
+    position: fixed;
+    width: 70%;
+    right: 0;
+    z-index: 200;
+    max-width: 400px;
+    /*  chiều dài lớn nhất của nó là 400px */
+    top: 0;
+}
+
+.side_drawer ul {
+    list-style: none;
+    text-decoration: none;
+    justify-content: center;
+    height: 100%;
+}
+
+.side_drawer ul a {
+    text-decoration: none;
+    color: #521751;
+    font-size: 1.2rem;
+}
+
+.side_drawer li {
+    margin: 3rem 0;
+    /* khoản cách trái phải */
+}
+
+.side_drawer a:hover,
+.side_drawer a:active {
+    color: #fa923f;
+}
+
+.icon_drawer {
+    cursor: pointer;
+    color: #fff;
+}

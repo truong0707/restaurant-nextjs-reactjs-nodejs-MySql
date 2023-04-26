@@ -1,13 +1,13 @@
 /* import library */
 import React, { useState } from 'react';
 import Link from 'next/link';
+import DrawerToggleButton from '../SideDrawer.js/DrawerToggleButton';
 import styles from '@/styles/navbar.module.css';
 
 
 
-
 interface MyProps {
-    // drawerToggleClick: () => void;
+    drawerToggleClick: () => void;
 }
 
 export default function NavBar(props: MyProps) {
@@ -18,7 +18,7 @@ export default function NavBar(props: MyProps) {
                 <nav className={styles.toolbar__navigation}>
                     {/* Open/Close Menu */}
                     <div className={styles.faBar} >
-                        {/* <DrawerToggleButton drawerToggleClick={props.drawerToggleClick} /> */}
+                        <DrawerToggleButton drawerToggleClick={props.drawerToggleClick} />
                     </div>
 
                     {/* LOGO Nav */}

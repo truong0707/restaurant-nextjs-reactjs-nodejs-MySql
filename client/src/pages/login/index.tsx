@@ -127,7 +127,7 @@ export default function Login() {
     <>
       <div style={{ paddingTop: "80px" }} className={styles.body_form}>
         {loading && <BackdropProgressLoading />}
-        <div style={{ padding: '10px', height: '100%' }} className='backdrop'>
+        <div style={{ padding: '10px', height: '100%' }} className={styles.backdrop}>
           {
             error ?
               <>

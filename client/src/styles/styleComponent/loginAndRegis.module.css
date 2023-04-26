@@ -1,4 +1,4 @@
-/* LOGIN/ Regis PAGE */ /* Date create : 10/13/2022, creator: Truong */
+/* LOGIN/ Regis PAGE */ /* Date create : 26/4/2023, creator: Truong */
 .body_form {
   display: flex;
   justify-content: center;
@@ -85,9 +85,27 @@ form .user_details .input_box {
 form .category {
   width: 100%;
 }
+.backdrop {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(0px);
+  position: absolute;
+  top: 0;
+  /* height: 105%; */
+}
+
+@media (max-width: 600px) {
+  .body_form {
+    height: 844px;
+  }
+}
 
 @media (max-width: 584px) {
   .wrap_form {
     max-width: 100%;
   }
+  /* .loginAndRegis_body_form__5PSz_ {
+    align-items: center;
+    height: 666px;
+  } */
 }
