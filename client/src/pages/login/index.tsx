@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import "../../src/App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { /* useLocation, */ /* useNavigate */ } from "react-router-dom";
 import { useRouter } from "next/router"
 import { login } from '../../store/redux/actions/userActions';
-// import { StateStore } from '../App';
 import ErrorAlert from '@/components/Alert/ErrorAlert';
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
-
+import styles from '@/styles/styleComponent/loginAndRegis.module.css'
 
 
 export interface StateStore {
@@ -61,7 +58,7 @@ export default function Login() {
   const router = useRouter();
   const { pathname, query } = router;
   const location = useRouter();
-  const redirect = location.query ? router.query.redirect : "/";;
+  const redirect = location.query ? router.query.redirect : "/";
   console.log(redirect, "pa")
   // const navigate = useNavigate();
   // const redirect = location.search ? location.search.split("=")[1] : "/";
@@ -128,7 +125,7 @@ export default function Login() {
 
   return (
     <>
-      <div style={{ paddingTop: "80px" }} className='body_form'>
+      <div style={{ paddingTop: "80px" }} className={styles.body_form}>
         {loading && <BackdropProgressLoading />}
         <div style={{ padding: '10px', height: '100%' }} className='backdrop'>
           {
@@ -137,13 +134,13 @@ export default function Login() {
                 <ErrorAlert messageError={`${error}`} />
               </> : <p style={{ marginTop: '110px' }}></p>
           }
-          <div className="wrap_form">
-            <div style={{ color: '#BF014B' }} className="title">ĐĂNG NHẬP</div>
-            <div className="content">
+          <div className={styles.wrap_form}>
+            <div style={{ color: '#BF014B' }} className={styles.title}>ĐĂNG NHẬP</div>
+            <div className={styles.content}>
               <form onSubmit={handleSubmit}>
-                <div className="user-details">
-                  <div className="input-box">
-                    <span className="details">User Name</span>
+                <div className={styles.user_details}>
+                  <div className={styles.input_box}>
+                    <span className={styles.details}>User Name</span>
                     <input onChange={handleInputChange}
                       name="email"
                       type="text"
@@ -152,8 +149,8 @@ export default function Login() {
                   </div>
                   {errors.email === '' || errors.email === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.email}</p>}
 
-                  <div className="input-box">
-                    <span className="details">Password</span>
+                  <div className={styles.input_box}>
+                    <span className={styles.details}>Password</span>
                     <input
                       name="password"
                       onChange={handleInputChange}
@@ -171,7 +168,7 @@ export default function Login() {
                             <p>dsd</p>
                         </div> */}
 
-                <div className="button">
+                <div className={styles.button}>
                   <input type="submit" value="ĐĂNG NHẬP" />
 
                 </div>

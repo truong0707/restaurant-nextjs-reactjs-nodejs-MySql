@@ -1,0 +1,93 @@
+/* LOGIN/ Regis PAGE */ /* Date create : 10/13/2022, creator: Truong */
+.body_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 695px;
+  padding: 10px;
+  background: url("https://d2och25llwfr54.cloudfront.net/wp-content/uploads/2020/02/32.jpg")
+    center;
+}
+.wrap_form {
+  max-width: 450px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
+  margin: auto;
+}
+.wrap_form .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.wrap_form .title {
+  text-align: center;
+}
+.content form .user_details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user_details .input_box {
+  margin-bottom: 15px;
+  width: calc(100%);
+}
+form .input_box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user_details .input_box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user_details .input_box input:focus,
+.user_details .input_box input:valid {
+  /* border-color: #90C43C; */
+}
+
+form .button {
+  height: 45px;
+  margin: 0px 0 35px;
+}
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #bf014b;
+}
+form .button input:hover {
+  /* transform: scale(0.99); */
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+form .user_details .input_box {
+  margin-bottom: 15px;
+  width: 100%;
+}
+form .category {
+  width: 100%;
+}
+
+@media (max-width: 584px) {
+  .wrap_form {
+    max-width: 100%;
+  }
+}

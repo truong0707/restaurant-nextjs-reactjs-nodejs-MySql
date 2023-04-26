@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import MasterLayout from '@/components/MasterLayoutPage'
 import Slider from "react-slick";
-// import CardProduct from "../components/CardProduct";
 import Footer from '@/components/Footer/Footer';
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
