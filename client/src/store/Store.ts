@@ -3,12 +3,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 // import { productDetailReducer, productListHomeReducer, productListReducer } from "./reducers/ProductReducer";
 import { userLoginReduder, userRegisterReducer } from "./redux/reducers/userReducer";
+import { getDataReducer } from "./redux/reducers/localDataReducer";
+// import CC from "./CC";
 // import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 
 const reducer = combineReducers({
     userLogin: userLoginReduder,
     userRegister: userRegisterReducer,
+    useDataLocal: getDataReducer,
     // productList: productListReducer,
     // productDetail: productDetailReducer,
     // productListHome: productListHomeReducer,
@@ -17,15 +20,16 @@ const reducer = combineReducers({
 const middleware = [thunk];
 
 
+// console.log(window ,"window ")
+
 // check Local LocalStorage --> initState
 // const userInfoFromLocalStorage = localStorage.getItem("userInfo")
 //     ? JSON.parse(localStorage.getItem("userInfo") || '{}')
 //     : null;
 
 const initalState = {
-    userLogin: { userInfo: /* userInfoFromLocalStorage */[] },
+    userLogin: { userInfo: /* userInfoFromLocalStorage */ /* CC() */ null },
 };
-
 
 // create store
 const store = createStore(reducer, initalState, composeWithDevTools(applyMiddleware(...middleware)));

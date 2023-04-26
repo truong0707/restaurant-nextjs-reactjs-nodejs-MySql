@@ -1,0 +1,2 @@
+/*   */
+export const GET_DATA_USER_LOCAL_STORAGE = "GET_DATA_USER_LOCAL_STORAGE";

@@ -18,7 +18,7 @@ export function login(email?: string, password?: string) {
                     },
                 };
                 // call api
-                const { data } = await axios.post(`http://localhost:8080/api/v1/login`, {
+                const { data } = await axios.post(`http://localhost:8080/api/v1/user/login`, {
                     email, password
                 }, config);
 
@@ -26,9 +26,7 @@ export function login(email?: string, password?: string) {
 
                 /// save localStorage
                 localStorage.setItem("userInfo", JSON.stringify(data));
-
                 console.log(data)
-
             } catch (error: any) {
                 console.log(error.response.data.msg)
                 console.log(error.response)

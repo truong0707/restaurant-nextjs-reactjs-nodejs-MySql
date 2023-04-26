@@ -8,6 +8,7 @@ import styles from '@/styles/styleComponent/loginAndRegis.module.css'
 
 
 export interface StateStore {
+  useDataLocal: any;
   userLogin: {
     loading: boolean;
     userInfo: {
@@ -60,22 +61,23 @@ export default function Login() {
   const location = useRouter();
   const redirect = location.query ? router.query.redirect : "/";
   console.log(redirect, "pa")
-  // const navigate = useNavigate();
-  // const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userLogin = useSelector((state: StateStore) => state.userLogin); // lấy dữ liệu từ store
   const { error, loading, userInfo } = userLogin;
 
+
   // Xử lý chuyển trang khi đã đăng nhập
   useEffect(() => {
-    // if (userInfo) {
-    //     navigate(redirect)
-    // }
-
     if (userInfo) {
-      // navigate('/');
+      router.push('/')
     }
   }, [userInfo, /* navigate */, /* redirect */])
+
+  console.log(userInfo, "userInfo")
+
+  if (userInfo) {
+    console.log('co')
+  }
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,36 +92,45 @@ export default function Login() {
     let errorSubmit: ErrorSubmit = {
       numberPhone: ''
     };
-    // let flag = true;
-    let check = false;
 
-    // validate email
-    if (inputs.email === undefined || inputs.email === '') {
-      errorSubmit.email = "Bạn vui lòng nhập email của mình !";
+    let checkEmail = false;
+    let checkPass = false;
+
+    /* validate email */
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const checkEmailFormat = emailRegex.test(`${inputs.email}`);
+
+    if (inputs.email === undefined || inputs.email === "") {
+      errorSubmit.email = "Please enter your email!";
       setErrors(errorSubmit);
-      check = false;
+      checkEmail = false;
+    } else if (!checkEmailFormat) {
+      errorSubmit.email = "Email is not in the correct format!";
+      setErrors(errorSubmit);
+      checkEmail = false;
     } else {
       setErrors(errorSubmit);
-      check = true;
+      checkEmail = true;
     }
 
-    // validate password
-    if (inputs.password === undefined || inputs.password === '') {
-      errorSubmit.password = "Bạn vui lòng nhập password của mình !";
+    /* validate password */
+    if (inputs.password === undefined || inputs.password === "") {
+      errorSubmit.password = "Please enter your password!";
       setErrors(errorSubmit);
-      check = false;
+      checkPass = false;
     } else {
       setErrors(errorSubmit);
-      check = true;
+      checkPass = true;
     }
 
     const loginPromise = login(inputs.email, inputs.password);
-    if (check) {
+
+    if (checkEmail && checkPass) {
       loginPromise(dispatch);
       // dispatch(login(email, password)) => lỗi
 
     } else {
-      alert('đăng nhập thất bại !')
+      alert('Đăng nhập thất bại !')
     }
   }
 
