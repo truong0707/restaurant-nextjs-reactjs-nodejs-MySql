@@ -1,6 +1,8 @@
+import CardProduct from '@/components/CardProduct/CardProduct';
 import MasterLayoutPage from '@/components/MasterLayoutPage'
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import styles from '@/styles/shop.module.css';
 
 
 const image = [
@@ -28,19 +30,12 @@ export default function index() {
              <div style={{ background: '', width: '90%', margin: 'auto', marginTop: '100px', marginBottom: '50px' }} className='wrap_shop'>
                 <h1 onClick={handleClickRM}>Delivery menu</h1>
 
-                <div onClick={handleClick} className={cc ? "ss" : "aa"}>cc</div>
-                <p onClick={handleClick} className={cc ? "ss" : "aa"}>cc</p>
-                <p onClick={handleClick} className={cc ? "ss" : "aa"}>cc</p>
-                <p onClick={handleClick} className={cc ? "ss" : "aa"}>cc</p>
-                <p onClick={handleClick} className={cc ? "ss" : "aa"}>cc</p>
-                <p onClick={handleClick} className={cc ? "ss" : "aa"}>cc</p>
-
-                <div className='wrapper_item'>
+                <div className={styles.wrapper_item}>
                     {
                         image.map((data) => (
                             <div className='items'>
                                 <Link href="/detail">
-                                    {/* <CardProduct urlImage={data.urlVideo} /> */}
+                                    <CardProduct urlImage={data.urlVideo} />
                                 </Link>
 
                             </div>
