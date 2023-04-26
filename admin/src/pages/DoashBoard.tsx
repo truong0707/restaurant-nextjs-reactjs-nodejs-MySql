@@ -42,7 +42,7 @@ export default function DoashBoard() {
   const userStore = useSelector((state: RootState) => state.users);
   const { isLoading, messageSuccessEditTeacher, errorEditUserTeacher } =
     userStore;
-  const { data } = dataUserStore;
+  const data = dataUserStore;
   const [inputs, setInputs] = useState<TypeObjectInputDetailUser>({});
 
   useEffect(() => {
