@@ -1,10 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize(
-  'shop_food',
-  'root',
-  '', {
-  host: "localhost",
+  'btq0bqe5hehum2y35jpu', /* epiz_34087261_projectRestaurant - shop_food */ /* name db */
+  'uuxwcxvoaamlxqam', /* 	epiz_34087261- root  */ /* user */
+  '5mEbrayTW7MW7HQh2H4c', { /* 	UVVBdnBoCbix0Hv -  */  /* pass */
+  host: "btq0bqe5hehum2y35jpu-mysql.services.clever-cloud.com", /* sql206.epizy.com - localhost */
   dialect: 'mysql',
 });
 
