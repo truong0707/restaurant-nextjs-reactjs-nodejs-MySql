@@ -1,6 +1,6 @@
 const express = require('express');
-const { connectDB } = require("./configs/ConnectDb");
-const configViewEngine = require('./configs/viewsEngine'); // sử dụng configviewEngine
+const { connectDB } = require("./src/configs/ConnectDb");
+const configViewEngine = require('./src/configs/viewsEngine'); // sử dụng configviewEngine
 require('dotenv').config(); // sử dụng dotenv
 const cookieParser = require("cookie-parser");
 
@@ -16,10 +16,10 @@ app.use(cookieParser()); //
 app.use(express.urlencoded({ limit: "50mb" }, { extended: true }));
 
 /*  */
-const initApiUser = require("./routes/UserRoutes");
-const initApiFood = require("./routes/FoodRoutes");
-const initProduct = require('./routes/ProductRoutes.js');
-const initCategory = require('./routes/CategoryRoutes');
+const initApiUser = require("./src/routes/UserRoutes");
+const initApiFood = require("./src/routes/FoodRoutes");
+const initProduct = require('./src/routes/ProductRoutes.js');
+const initCategory = require('./src/routes/CategoryRoutes');
 
 connectDB()
 
