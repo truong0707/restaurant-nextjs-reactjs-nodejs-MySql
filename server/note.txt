@@ -15,3 +15,10 @@ sẽ gọi đến thằng model
 --- Trả lại thông tin cho người dùng
 
 1. trong api, tên param đc đặt chính là thuộc tính param trong req.params
+
+
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/server.js"
+  },
