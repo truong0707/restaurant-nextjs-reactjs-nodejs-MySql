@@ -5,11 +5,11 @@ import DrawerToggleButton from '../SideDrawer.js/DrawerToggleButton';
 import { StateStore } from '@/pages/login';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '@/styles/navbar.module.css';
-import { logout } from '@/store/redux/actions/userActions';
 
 
 interface MyProps {
     drawerToggleClick: () => void;
+    handleLogout: () => void
 }
 
 export default function NavBar(props: MyProps) {
@@ -18,13 +18,6 @@ export default function NavBar(props: MyProps) {
     const { userInfoLocal } = userDataLocal;
 
 
-    // console.log(isAdmin)
-    const logAutPromise = logout();
-    // Xử lý lohout
-    const handleLogout = () => {
-        // dispatch(logout())
-        logAutPromise(dispatch);
-    }
 
     return (
         <>
@@ -90,7 +83,7 @@ export default function NavBar(props: MyProps) {
                                     </Link>
 
                                     <Link style={{ textDecoration: 'none' }} href=''>
-                                        <li className={`${styles.profile} ${styles.item__bar}`} onClick={handleLogout}>
+                                        <li className={`${styles.profile} ${styles.item__bar}`} onClick={props.handleLogout}>
                                             logout
                                         </li>
                                     </Link>

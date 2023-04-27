@@ -27,6 +27,7 @@
 .side_drawer li {
     margin: 3rem 0;
     /* khoản cách trái phải */
+    height: 18px
 }
 
 .side_drawer a:hover,
