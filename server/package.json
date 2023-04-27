@@ -1,10 +1,10 @@
 {
-  "name": "1.bai1",
+  "name": "project-restaurant",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/server.js",
   "engines": {
-    "node": "14.x"
+    "node": "15.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
