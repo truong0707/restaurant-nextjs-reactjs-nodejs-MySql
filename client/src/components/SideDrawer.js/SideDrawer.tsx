@@ -19,10 +19,8 @@ export default function SideDrawer(props: MySideDrawerNav) {
                     {userInfoLocal && userInfoLocal.data ? (
                         <li /* onClick={handleclickProfile} */>
                             <Link style={{ textDecoration: 'none' }} href='/profile'>
-
-                                <img style={{ marginRight: '7px', marginLeft: '-3px', width: '50px', borderRadius: '100%' }} src='https://avatars.githubusercontent.com/u/70809618?s=400&u=4fa5bdd589e6f6bb0f6377be69ba8146f75d389b&v=4' alt='' className={styles.avatar__user} />
+                                <img style={{ marginRight: '7px', marginLeft: '-15px', width: '50px', borderRadius: '100%' }} src='https://avatars.githubusercontent.com/u/70809618?s=400&u=4fa5bdd589e6f6bb0f6377be69ba8146f75d389b&v=4' alt='' className={styles.avatar__user} />
                                 Hi, {userInfoLocal.data.name}
-
                             </Link>
                         </li>
                     ) : (

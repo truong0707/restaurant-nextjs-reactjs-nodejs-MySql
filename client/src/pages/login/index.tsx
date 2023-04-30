@@ -5,6 +5,7 @@ import { login } from '../../store/redux/actions/userActions';
 import ErrorAlert from '@/components/Alert/ErrorAlert';
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
 import styles from '@/styles/styleComponent/loginAndRegis.module.css'
+import Link from 'next/link';
 
 
 export interface StateStore {
@@ -60,10 +61,12 @@ export default function Login() {
   const { pathname, query } = router;
   const location = useRouter();
   const redirect = location.query ? router.query.redirect : "/";
-  console.log(redirect, "pa")
 
   const userLogin = useSelector((state: StateStore) => state.userLogin); // lấy dữ liệu từ store
   const { error, loading, userInfo } = userLogin;
+
+
+  // console.log(userLogin, "userLogin")
 
 
   // Xử lý chuyển trang khi đã đăng nhập
@@ -72,12 +75,6 @@ export default function Login() {
       router.push('/')
     }
   }, [userInfo, /* navigate */, /* redirect */])
-
-  console.log(userInfo, "userInfo")
-
-  if (userInfo) {
-    console.log('co')
-  }
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,7 +148,7 @@ export default function Login() {
               <form onSubmit={handleSubmit}>
                 <div className={styles.user_details}>
                   <div className={styles.input_box}>
-                    <span className={styles.details}>User Name</span>
+                    <span className={styles.details}>Email:</span>
                     <input onChange={handleInputChange}
                       name="email"
                       type="text"
@@ -161,7 +158,7 @@ export default function Login() {
                   {errors.email === '' || errors.email === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.email}</p>}
 
                   <div className={styles.input_box}>
-                    <span className={styles.details}>Password</span>
+                    <span className={styles.details}>Password:</span>
                     <input
                       name="password"
                       onChange={handleInputChange}
@@ -172,7 +169,6 @@ export default function Login() {
                   {errors.password === '' || errors.password === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', margin: '7px', fontSize: '14px' }}>{errors.password}</p>}
                 </div>
 
-
                 {/* <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: "200px", background: 'pink', margin: "auto" }} className="gender-details">
                             <p>gg</p>
                             <p>gitthub</p>
@@ -181,8 +177,9 @@ export default function Login() {
 
                 <div className={styles.button}>
                   <input type="submit" value="ĐĂNG NHẬP" />
-
                 </div>
+
+                <p style={{ textAlign: 'center' }}>Bạn chưa có tài khoản? <Link href="/register?redirect=/">Đăng ký ngay</Link></p>
               </form>
             </div>
           </div >

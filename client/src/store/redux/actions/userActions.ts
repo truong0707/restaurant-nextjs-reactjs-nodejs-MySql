@@ -18,7 +18,7 @@ export function login(email?: string, password?: string) {
                     },
                 };
                 // call api
-                const { data } = await axios.post(`https://restaurant-truongit.onrender.com/api/v1/user/login`, {
+                const { data } = await axios.post(`https://resaurant-truongit.onrender.com/api/v1/user/login`, {
                     email, password
                 }, config);
 
@@ -26,13 +26,10 @@ export function login(email?: string, password?: string) {
 
                 /// save localStorage
                 localStorage.setItem("userInfo", JSON.stringify(data));
-                console.log(data)
             } catch (error: any) {
-                console.log(error.response.data.msg)
-                console.log(error.response)
                 dispatch({
                     type: USER_LOGIN_FAIL,
-                    payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg,
+                    payload: error.response && error.response.data.message ? error.response.data.message : "server của chúng tôi có sự cố, hãy quay lại sau :((",
                 })
             }
 
@@ -45,7 +42,7 @@ export const logout = () => (dispatch: Dispatch) => {
     localStorage.removeItem("userInfo");
     dispatch({ type: USER_LOGOUT });
     document.location.href = "/login";
-    alert("bye user")
+    alert("Tạm biệt bạn, hẹn gặp bạn vào 1 ngày đẹp trời")
 }
 
 
