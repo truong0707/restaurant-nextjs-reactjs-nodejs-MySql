@@ -6,6 +6,7 @@ import ErrorAlert from '@/components/Alert/ErrorAlert';
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
 import styles from '@/styles/styleComponent/loginAndRegis.module.css'
 import Link from 'next/link';
+import { checkRole } from '@/utils/CheckRole';
 
 
 export interface StateStore {
@@ -13,11 +14,21 @@ export interface StateStore {
   userLogin: {
     loading: boolean;
     userInfo: {
-      isAdmin: boolean;
-      name?: string;
+      data: {
+        token: any
+      };
     };
     error: boolean;
   };
+  userRegister: {
+    loading: boolean,
+    userInfo: {
+      data: {
+        token: any
+      };
+    };
+    error: boolean,
+  }
 }
 
 export interface TypeObjectInput {
@@ -51,21 +62,23 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const { pathname, query } = router;
   const location = useRouter();
-  const redirect = location.query ? router.query.redirect : "/";
 
   const userLogin = useSelector((state: StateStore) => state.userLogin); // lấy dữ liệu từ store
   const { error, loading, userInfo } = userLogin;
 
 
-  // console.log(userLogin, "userLogin")
-
 
   // Xử lý chuyển trang khi đã đăng nhập
   useEffect(() => {
     if (userInfo) {
-      router.push('/')
+      const role = checkRole(userLogin.userInfo.data.token);
+
+      if (role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/');
+      }
     }
   }, [userInfo, /* navigate */, /* redirect */])
 

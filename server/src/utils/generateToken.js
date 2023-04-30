@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
+const checkRole = require('./CheckRole');
 
-const generateToken = (user) => {
-    // console.log("info user", user)
+const generateToken = async (user) => {
+    const nameRole = await checkRole(user);
+
     return jwt.sign({
         id: user.id,
-        role_id: user.role_id,
+        role: nameRole,
         email: user.email,
         name: user.name,
         user_id: user.user_id

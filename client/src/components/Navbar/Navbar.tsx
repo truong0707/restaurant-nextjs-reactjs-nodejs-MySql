@@ -13,7 +13,6 @@ interface MyProps {
 }
 
 export default function NavBar(props: MyProps) {
-    const dispatch = useDispatch()
     const userDataLocal = useSelector((state: StateStore) => state.useDataLocal);
     const { userInfoLocal } = userDataLocal;
 

@@ -7,11 +7,18 @@ import Footer from '@/components/Footer/Footer';
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import styles from '@/styles/Home.module.css'
+import { useSelector } from 'react-redux';
+import { StateStore } from './login';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
 
+
+export default function Home() {
+  const userDataLocal = useSelector((state: StateStore) => state.useDataLocal);
+  const { userInfoLocal } = userDataLocal;
+
+  console.log(userInfoLocal, 'userInfoLocal')
 
 
   var settings = {

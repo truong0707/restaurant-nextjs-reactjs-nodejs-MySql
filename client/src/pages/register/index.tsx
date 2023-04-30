@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TypeObjectInput, ErrorSubmit, TypeError } from '../login/index';
+import { TypeObjectInput, ErrorSubmit, TypeError, StateStore } from '../login/index';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -10,17 +10,18 @@ import { useRouter } from "next/router"
 import ErrorAlert from "../../components/Alert/ErrorAlert";
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
 import styles from '@/styles/styleComponent/loginAndRegis.module.css'
+import { checkRole } from '@/utils/CheckRole';
 
 
-interface StateStoreRegis {
-  userRegister: {
-    loading: boolean,
-    userInfo: {
+// interface StateStoreRegis {
+//   userRegister: {
+//     loading: boolean,
+//     userInfo: {
 
-    }
-    error: boolean,
-  }
-}
+//     }
+//     error: boolean,
+//   }
+// }
 
 export default function index() {
   const [inputs, setInputs] = useState<TypeObjectInput>({});
@@ -28,7 +29,7 @@ export default function index() {
   const dispatch = useDispatch();
 
   // use userRegister from store redux
-  const userRegister = useSelector((state: StateStoreRegis) => state.userRegister);
+  const userRegister = useSelector((state: StateStore) => state.userRegister);
   const { error, loading, userInfo } = userRegister;
   const [msgGeneralErrValidate, setMsgGeneralErrValidate] = useState<{ msgGeneral?: string }>({});
 
@@ -39,7 +40,13 @@ export default function index() {
   // Xử lý chuyển trang khi đã đăng nhập
   useEffect(() => {
     if (userInfo) {
-      router.push('/')
+      const role = checkRole(userRegister.userInfo.data.token);
+
+      if (role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/');
+      }
     }
   }, [userInfo])
 
