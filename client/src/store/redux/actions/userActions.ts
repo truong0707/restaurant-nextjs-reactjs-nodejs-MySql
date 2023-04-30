@@ -18,7 +18,7 @@ export function login(email?: string, password?: string) {
                     },
                 };
                 // call api
-                const { data } = await axios.post(`https://resaurant-truongit.onrender.com/api/v1/user/login`, {
+                const { data } = await axios.post(`https://restaurant-truongit.onrender.com/api/v1/user/login`, {
                     email, password
                 }, config);
 
