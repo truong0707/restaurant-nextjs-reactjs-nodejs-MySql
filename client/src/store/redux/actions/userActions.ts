@@ -79,7 +79,7 @@ export const register =
       };
       // call api
       const { data } = await axios.post(
-        `http://localhost:8080/api/v1/user/register`,
+        `https://restaurant-truongit.onrender.com/api/v1/user/register`,
         { name, email, password, confirmPass, role },
         config
       );
