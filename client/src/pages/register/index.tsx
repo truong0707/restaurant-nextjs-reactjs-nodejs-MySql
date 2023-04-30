@@ -25,32 +25,31 @@ interface StateStoreRegis {
 export default function index() {
   const [inputs, setInputs] = useState<TypeObjectInput>({});
   const [errors, setErrors] = useState<TypeError>({});
-
   const dispatch = useDispatch();
 
-  const registerPromise = register(inputs.name, inputs.numberPhone, inputs.sex, inputs.national, inputs.email, inputs.password, inputs.comfirmPass);
   // use userRegister from store redux
   const userRegister = useSelector((state: StateStoreRegis) => state.userRegister);
   const { error, loading, userInfo } = userRegister;
+  const [msgGeneralErrValidate, setMsgGeneralErrValidate] = useState<{ msgGeneral?: string }>({});
 
   const router = useRouter();
-  const { pathname, query } = router;
-  const location = useRouter();
-  const navigate = useRouter();
-  const redirect = location.query ? router.query.redirect : "/";;
+  // const { pathname, query } = router;
 
 
   // Xử lý chuyển trang khi đã đăng nhập
   useEffect(() => {
     if (userInfo) {
-      // navigate(redirect + "login");
+      router.push('/')
     }
-  }, [userInfo, navigate, redirect])
+  }, [userInfo])
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nameInput = e.target.name;
     let valueInput = e.target.value;
+
+    console.log(inputs, "inputs");
+    console.log(errors, "errors");
 
     setInputs(state => ({ ...state, [nameInput]: valueInput })) // 
   }
@@ -65,99 +64,97 @@ export default function index() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let errorSubmit: ErrorSubmit = {};
-    let flag = true;
-    let checkError = false;
+    let checkName = false;
+    let checkEmail = false;
+    let checkPass = false;
+    let checkconfirmPass = false;
+    let checkRole = false;
 
-    // validate name and sex
+    /* validate name */
     if (inputs.name === undefined || inputs.name === '') {
       errorSubmit.name = "Vui lòng nhập tên của bạn !";
       setErrors(errorSubmit);
-      checkError = false;
-    }
-    else if (inputs.sex === undefined || inputs.sex === '') {
-      errorSubmit.sex = "Vui lòng nhập giới tính của bạn !";
-      setErrors(errorSubmit);
-      checkError = false;
+      checkName = false;
     } else {
-      setErrors(errorSubmit);
-      checkError = true;
+      checkName = true;
     }
 
-    // validate numberPhone
-    if (inputs.numberPhone === undefined || inputs.numberPhone === '') {
-      errorSubmit.numberPhone = "Vui lòng nhập số điện thoại!";
+    /* validate email */
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const checkEmailFormat = emailRegex.test(`${inputs.email}`);
+
+    if (inputs.email === undefined || inputs.email === "") {
+      errorSubmit.email = "Xin hãy điên email!";
       setErrors(errorSubmit);
-      checkError = false;
+      checkEmail = false;
+    } else if (!checkEmailFormat) {
+      errorSubmit.email = "Email không đúng định dạng!";
+      setErrors(errorSubmit);
+      checkEmail = false;
     } else {
       setErrors(errorSubmit);
-      checkError = true;
+      checkEmail = true;
     }
 
-    // validate national
-    if (inputs.national === undefined || inputs.national === '') {
-      errorSubmit.national = "Vui lòng nhập nơi ở hiện tại !";
-      setErrors(errorSubmit);
-      checkError = false;
-    } else {
-      setErrors(errorSubmit);
-      checkError = true;
-    }
-
-    // validate email
-    if (inputs.email === undefined || inputs.email === '') {
-      errorSubmit.email = "Vui lòng nhập email !";
-      setErrors(errorSubmit);
-      checkError = false;
-    } else {
-      setErrors(errorSubmit);
-      checkError = true;
-    }
-
-    // validate password
+    /* validate password */
     if (inputs.password === undefined || inputs.password === '') {
       errorSubmit.password = "Vui lòng nhập mật khẩu !";
       setErrors(errorSubmit);
-      checkError = false;
+      checkPass = false;
     } else {
       setErrors(errorSubmit);
-      checkError = true;
+      checkPass = true;
     }
 
-    // validate comfirm password
-    if (inputs.comfirmPass === undefined || inputs.comfirmPass === '') {
-      errorSubmit.comfirmPass = "Vui lòng nhập lại mật khẩu !";
+    /*  validate comfirm password */
+    if (inputs.confirmPass === undefined || inputs.confirmPass === '') {
+      errorSubmit.confirmPass = "Vui lòng nhập lại mật khẩu !";
       setErrors(errorSubmit);
-      checkError = false;
-    } else if (inputs.comfirmPass !== inputs.password) {
-      alert("Nhập lại mật khẩu không khớp nhau!");
-      checkError = false;
-    } else if (inputs.comfirmPass === inputs.password) {
-      checkError = true;
+      checkconfirmPass = false;
+    } else if (inputs.confirmPass !== inputs.password) {
+      checkconfirmPass = false;
+      errorSubmit.confirmPass = "Có vẻ như mật khẩu và nhập lại mật khẩu không khớp !";
+    } else if (inputs.confirmPass === inputs.password) {
+      checkconfirmPass = true;
     } else {
       setErrors(errorSubmit);
-      checkError = true;
+      checkconfirmPass = true;
     }
 
+     /* validate role */
+     if (inputs.role === undefined || inputs.role === '') {
+      errorSubmit.role = "Vui lòng nhập mật khẩu !";
+      setErrors(errorSubmit);
+      checkRole = false;
+    } else {
+      setErrors(errorSubmit);
+      checkRole = true;
+    }
+  
+    const registerPromise = register(inputs.name, inputs.role, inputs.email, inputs.password, inputs.confirmPass);
 
-    if (checkError) {
-      // alert("Điền Thông tin thành công!");
+    if (checkName && checkEmail && checkPass && checkconfirmPass) {
+      setMsgGeneralErrValidate({})
       registerPromise(dispatch);
-
     } else {
-      alert("Bạn phải nhập đúng thông tin!")
+      setMsgGeneralErrValidate({
+        msgGeneral: "Bạn phải nhập tất cả thông tin để đăng ký!"
+      })
     }
-
   }
 
   return (
-    <div style={{ paddingTop: "80px", height: "1200px" }} className={styles.body_form}>
+    <div style={{ paddingTop: "0px", height: "900px" }} className={styles.body_form}>
       {loading && <BackdropProgressLoading />}
-      <div style={{ padding: '10px', height: '1200px' }} className='backdrop'>
+      <div style={{ padding: '10px', height: '900px' }} className='backdrop'>
         {
           error ?
             <>
               <ErrorAlert messageError={`${error}`} />
-            </> : <p style={{ marginTop: '70px' }}></p>
+            </> : null
+        }
+        {
+          msgGeneralErrValidate.msgGeneral ? <ErrorAlert messageError={`${msgGeneralErrValidate.msgGeneral}`} /> : null
         }
         <div className={styles.wrap_form}>
           <div style={{ color: '#BF014B' }} className={styles.title}>ĐĂNG KÝ</div>
@@ -173,50 +170,8 @@ export default function index() {
                       placeholder="Nhập tên của bạn"
                     />
                   </div>
-                  {errors.name === '' || errors.name === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.name}</p>}
-
-                  <FormControl sx={{ minWidth: "100%" }} size="medium">
-                    <InputLabel id="demo-select-small">Giới tính</InputLabel>
-                    <Select
-                      labelId="demo-select-small"
-                      id="demo-select-small"
-                      name="sex"
-                      label="Giới tính"
-                      onChange={handleSelectChange}
-                    >
-                      <MenuItem value=''>
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value={'Nam'}>Nam</MenuItem>
-                      <MenuItem value={'Nữ'}>Nữ</MenuItem>
-                      <MenuItem value={'Khác'}>Khác</MenuItem>
-                    </Select>
-                    {errors.sex === '' || errors.sex === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.sex}</p>}
-                  </FormControl>
+                  {errors.name === '' || errors.name === undefined ? null : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.name}</p>}
                 </div>
-
-
-                <div className={styles.input_box}>
-                  <span className={styles.details}>Số điện thoại</span>
-                  <input onChange={handleInputChange}
-                    name="numberPhone"
-                    type="number"
-                    placeholder="Nhập số điện thoại"
-                  />
-                </div>
-                {errors.numberPhone === '' || errors.numberPhone === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.numberPhone}</p>}
-
-
-                <div className={styles.input_box}>
-                  <span className={styles.details}>Quốc tịch</span>
-                  <input onChange={handleInputChange}
-                    name="national"
-                    type="text"
-                    placeholder="Bạn đến từ đầu?"
-                  />
-                </div>
-                {errors.national === '' || errors.national === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.national}</p>}
-
 
                 <div className={styles.input_box}>
                   <span className={styles.details}>Email</span>
@@ -226,7 +181,7 @@ export default function index() {
                     placeholder="Enter your username"
                   />
                 </div>
-                {errors.email === '' || errors.email === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.email}</p>}
+                {errors.email === '' || errors.email === undefined ? null : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.email}</p>}
 
                 <div className={styles.input_box}>
                   <span className={styles.details}>Password</span>
@@ -237,31 +192,48 @@ export default function index() {
                     placeholder="Nhập mật khẩu"
                   />
                 </div>
-                {errors.password === '' || errors.password === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', padding: 0, fontSize: '14px' }}>{errors.password}</p>}
+                {errors.password === '' || errors.password === undefined ? null : <p style={{ color: "#D93025", textAlign: 'start', padding: 0, fontSize: '14px' }}>{errors.password}</p>}
 
 
                 <div className={styles.input_box}>
                   <span className={styles.details}>comfirm Password</span>
                   <input
-                    name="comfirmPass"
+                    name="confirmPass"
                     onChange={handleInputChange}
                     type="password"
                     placeholder="Xác nhận mật khẩu"
                   />
                 </div>
+                {errors.confirmPass === '' || errors.confirmPass === undefined ? <p style={{ margin: '0', height: '100px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', padding: 0, fontSize: '14px' }}>{errors.confirmPass}</p>}
 
+                <FormControl sx={{ minWidth: "100%" }} size="small">
+                  <InputLabel id="demo-select-small">bạn tới đây với vai trò là gì?</InputLabel>
+                  <Select
+                    labelId="demo-select-small"
+                    id="demo-select-small"
+                    name="role"
+                    label="Bạn tới đây với vai trò là gì?"
+                    onChange={handleSelectChange}
+                    size='small'
+                  >
+                    <MenuItem value=''>
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={2}>Đầu bếp</MenuItem>
+                    <MenuItem value={3}>Khách hàng</MenuItem>
+                  </Select>
+                  {errors.role === '' || errors.role === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', marginBottom: '8px', fontSize: '14px' }}>{errors.role}</p>}
+                </FormControl>
               </div>
-              {errors.comfirmPass === '' || errors.comfirmPass === undefined ? <p style={{ margin: '0', height: '30px' }}></p> : <p style={{ color: "#D93025", textAlign: 'start', padding: 0, fontSize: '14px' }}>{errors.comfirmPass}</p>}
+
 
               <div className={styles.button}>
                 <input type="submit" value="ĐĂNG KÝ" />
-
               </div>
             </form>
           </div>
         </div >
       </div>
-
     </div >
   )
 }

@@ -22,33 +22,26 @@ export interface StateStore {
 
 export interface TypeObjectInput {
   name?: string,
-  sex?: any,
-  national?: string,
+  role?: string,
   email?: string,
   password?: string,
-  comfirmPass?: string,
-  numberPhone?: string
+  confirmPass?: string,
 }
 
 export interface ErrorSubmit {
   name?: string,
-  sex?: string,
-  national?: string,
-  numberPhone?: string,
+  role?: string,
   email?: string,
   password?: string,
-  comfirmPass?: string,
+  confirmPass?: string,
 }
 
 export interface TypeError {
   name?: string,
-  sex?: string,
-  national?: string,
+  role?: string,
   email?: string,
   password?: string,
-  comfirmPass?: string,
-  checkcomfirmPass?: boolean,
-  numberPhone?: string;
+  confirmPass?: string,
 }
 
 export default function Login() {
@@ -86,9 +79,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let errorSubmit: ErrorSubmit = {
-      numberPhone: ''
-    };
+    let errorSubmit: ErrorSubmit = {};
 
     let checkEmail = false;
     let checkPass = false;
@@ -133,9 +124,9 @@ export default function Login() {
 
   return (
     <>
-      <div style={{ paddingTop: "80px" }} className={styles.body_form}>
+      <div style={{ paddingTop: "80px", height: '700px' }} className={styles.body_form}>
         {loading && <BackdropProgressLoading />}
-        <div style={{ padding: '10px', height: '100%' }} className={styles.backdrop}>
+        <div style={{ padding: '10px', height: '700px' }} className={styles.backdrop}>
           {
             error ?
               <>

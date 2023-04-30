@@ -187,20 +187,20 @@ const postRegister = async (req, res) => {
   });
 
   if (userExists) {
-    return res.status(400).json({ msg: "Email đã tồn tại!" });
+    return res.status(400).json({ message: "Email đã tồn tại!" });
   } else {
     /* create user */
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
-      await db.users.create({
+      const newUser = await db.users.create({
         name: name,
         email: email,
         password: hashPassword,
         role_id: role ? role : 3,
       });
 
-      return res.json({ msg: "Register thành công!" });
+      return res.status(200).json({ message: "Register thành công!", data: newUser });
     } catch (error) {
       console.log("err", error);
     }

@@ -8,9 +8,9 @@ interface PropsErrType {
 export default function ErrorAlert(props: PropsErrType) {
     return (
         <div>
-            <Alert style={{ maxWidth: '440px', margin: 'auto', marginTop: "70px", marginBottom:'20px'}} severity="error">
-                <AlertTitle>Error</AlertTitle>
-                {props.messageError} — <strong>Lỗi!</strong>
+            <Alert style={{ maxWidth: '440px', margin: 'auto', marginTop: "10px", marginBottom:'20px'}} severity="error">
+                <AlertTitle>Có lỗi xảy ra!</AlertTitle>
+                {props.messageError} — <strong>Chú ý!</strong>
             </Alert>
         </div>
     )
