@@ -8,6 +8,14 @@ const sequelize = new Sequelize(
   dialect: 'mysql',
 });
 
+// const sequelize = new Sequelize(
+//   'shop_food', 
+//   'root',  
+//   '', { 
+//   host: "localhost", 
+//   dialect: 'mysql',
+// });
+
 const connectDB = async () => {
   try {
     await sequelize.authenticate();

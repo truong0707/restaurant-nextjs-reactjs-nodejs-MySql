@@ -31,8 +31,8 @@ export default function index() {
       const role = checkRole(userRegister.userInfo.data.token);
 
       if (role === 'admin') {
-        router.replace('https://restaurant-admin-truongit.vercel.app/admin');
         // router.replace('https://restaurant-admin-truongit.vercel.app/admin');
+        router.replace('http://localhost:3001/admin');
       } else {
         router.push('/');
       }

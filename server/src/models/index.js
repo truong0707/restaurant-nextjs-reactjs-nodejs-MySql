@@ -3,6 +3,7 @@ const { sequelize } = require("../configs/ConnectDb");
 
 const db = {};
 
+
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 

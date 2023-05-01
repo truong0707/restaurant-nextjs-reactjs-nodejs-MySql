@@ -9,15 +9,14 @@ import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import styles from '@/styles/Home.module.css'
 import { useSelector } from 'react-redux';
 import { StateStore } from './login';
+import { useContext, useEffect } from "react";
+import { ProductContext } from '@/store/context/Context';
 
 const inter = Inter({ subsets: ['latin'] });
-
-
 
 export default function Home() {
   const userDataLocal = useSelector((state: StateStore) => state.useDataLocal);
   const { userInfoLocal } = userDataLocal;
-
 
   var settings = {
     dots: true,

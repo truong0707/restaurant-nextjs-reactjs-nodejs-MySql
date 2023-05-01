@@ -65,7 +65,7 @@ const getFood = async (req, res) => {
 
   try {
     if (lowercaseStr === "all") {
-      const foods = await db.foods.findAll({
+      const ALLfoods = await db.foods.findAll({
         attributes: [
           "food_id",
           "food_name",
@@ -75,9 +75,10 @@ const getFood = async (req, res) => {
           "category_id",
         ],
       });
-      res.status(200).json({
+
+      return res.status(200).json({
         message: "Lấy sản phẩm thành công!",
-        data: foods,
+        data: ALLfoods,
       });
     } else {
       foods = await db.foods.findOne({
@@ -100,13 +101,11 @@ const getFood = async (req, res) => {
   }
 };
 
-
 /* deleteFoodById */
 const deleteFoodById = async (req, res) => {
   // try {
   //   const paramIdFood = req.params.foodId;
   //   const productFood = await Foods.findOne(paramIdFood);
-
   //   if (!productFood) {
   //     res.status(404).json({ message: "Không tìm thấy thức ăn!" });
   //   } else {

@@ -9,6 +9,20 @@
     position: absolute;
     top: 0;
 }
+
+/* category lisy shop */
+.css-1naelin-MuiTypography-root {
+    margin: 0;
+    font-family: Inter,sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.43;
+    display: block;
+}
+button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+    cursor: pointer;
+    font-size: 15px;
+}
 @import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 /* @import '../../node_modules/jquery/dist/jquery.min.js'; */
 /* @import '../../node_modules/bootstrap/dist/js/bootstrap.min.js'; */

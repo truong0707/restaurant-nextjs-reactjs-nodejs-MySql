@@ -72,7 +72,7 @@ export default function Login() {
 
       if (role === 'admin') {
         router.replace('https://restaurant-admin-truongit.vercel.app/admin');
-        // router.replace('https://restaurant-admin-truongit.vercel.app/admin');
+        router.replace('/admin');
       } else {
         router.push('/');
       }

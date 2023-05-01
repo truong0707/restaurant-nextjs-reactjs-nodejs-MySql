@@ -1,8 +1,27 @@
 /* Shop page */
+.linkStyle {
+    text-decoration: none;
+}
+.wrap_shop {
+    width: 90%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
 .wrapper_item {
+    width: 77%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px
+}
+.bodyContentShop {
+    display: flex;
+    justifyContent: space-between;
+    gap: 10px;
+}
+.wrapper_cateList {
+    width: 22%;
+    margin-top: 20px;
 }
 .ss {
     width: 50px;
@@ -25,13 +44,36 @@
 }
 
 /* Tablet: width >= 740px and width < 1024px */
-@media only screen and (min-width: 470px) and (max-width: 63.9375em) {
+@media only screen and (max-width: 1115px) {
+    .wrapper_item {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .wrap_shop {
+        width: 95%;
+    }
+}
+@media only screen and (max-width: 870px) {
+    .bodyContentShop {
+        flex-wrap: wrap-reverse;
+    }
+    .wrapper_item {
+        width: 100%;
+    }
+    .wrapper_cateList {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
     .wrapper_item {
         grid-template-columns: repeat(2, 1fr);
     }
+    .wrapper_cateList {
+        width: 100%;
+    }
 }
-@media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+@media only screen and (max-width: 450px) {
     .wrapper_item {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 }
