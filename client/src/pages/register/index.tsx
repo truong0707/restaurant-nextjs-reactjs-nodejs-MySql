@@ -12,17 +12,6 @@ import BackdropProgressLoading from '@/components/BackdropProgressLoading/Backdr
 import styles from '@/styles/styleComponent/loginAndRegis.module.css'
 import { checkRole } from '@/utils/CheckRole';
 
-
-// interface StateStoreRegis {
-//   userRegister: {
-//     loading: boolean,
-//     userInfo: {
-
-//     }
-//     error: boolean,
-//   }
-// }
-
 export default function index() {
   const [inputs, setInputs] = useState<TypeObjectInput>({});
   const [errors, setErrors] = useState<TypeError>({});
@@ -32,9 +21,8 @@ export default function index() {
   const userRegister = useSelector((state: StateStore) => state.userRegister);
   const { error, loading, userInfo } = userRegister;
   const [msgGeneralErrValidate, setMsgGeneralErrValidate] = useState<{ msgGeneral?: string }>({});
-
   const router = useRouter();
-  // const { pathname, query } = router;
+
 
 
   // Xử lý chuyển trang khi đã đăng nhập
@@ -43,7 +31,8 @@ export default function index() {
       const role = checkRole(userRegister.userInfo.data.token);
 
       if (role === 'admin') {
-        router.push('/admin');
+        router.replace('https://restaurant-admin-truongit.vercel.app/admin');
+        // router.replace('https://restaurant-admin-truongit.vercel.app/admin');
       } else {
         router.push('/');
       }
@@ -54,9 +43,6 @@ export default function index() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nameInput = e.target.name;
     let valueInput = e.target.value;
-
-    console.log(inputs, "inputs");
-    console.log(errors, "errors");
 
     setInputs(state => ({ ...state, [nameInput]: valueInput })) // 
   }
@@ -223,7 +209,7 @@ export default function index() {
                     onChange={handleSelectChange}
                     size='small'
                   >
-                    <MenuItem value=''>
+                    <MenuItem value={undefined}>
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={2}>Đầu bếp</MenuItem>

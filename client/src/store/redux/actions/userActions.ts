@@ -79,15 +79,17 @@ export const register =
       };
       // call api
       const response = await axios.post(
-        `https://restaurant-truongit.onrender.com/api/v1/user/register`,
+        // `https://restaurant-truongit.onrender.com/api/v1/user/register`,
+        `http://localhost:8080/api/v1/user/register`,
         { name, email, password, confirmPass, role },
         config
       );
       
       dispatch({ type: USER_REGISTER_SUCCESS, payload: response });
 
+
       /* save localStorage */
-      localStorage.setItem("userInfo", JSON.stringify(response));
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
       alert(
         "Chào mừng bạn đã đến với trang web của tôi, để chỉnh sửa profile, bạn click vào avata hoặc tên của minh !"
       );

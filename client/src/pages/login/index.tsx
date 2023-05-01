@@ -58,12 +58,8 @@ export interface TypeError {
 export default function Login() {
   const [inputs, setInputs] = useState<TypeObjectInput>({});
   const [errors, setErrors] = useState<TypeError>({});
-
   const dispatch = useDispatch();
-
   const router = useRouter();
-  const location = useRouter();
-
   const userLogin = useSelector((state: StateStore) => state.userLogin); // lấy dữ liệu từ store
   const { error, loading, userInfo } = userLogin;
 
@@ -75,7 +71,8 @@ export default function Login() {
       const role = checkRole(userLogin.userInfo.data.token);
 
       if (role === 'admin') {
-        router.push('/admin');
+        router.replace('https://restaurant-admin-truongit.vercel.app/admin');
+        // router.replace('https://restaurant-admin-truongit.vercel.app/admin');
       } else {
         router.push('/');
       }

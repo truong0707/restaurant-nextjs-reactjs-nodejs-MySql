@@ -18,8 +18,6 @@ export default function Home() {
   const userDataLocal = useSelector((state: StateStore) => state.useDataLocal);
   const { userInfoLocal } = userDataLocal;
 
-  console.log(userInfoLocal, 'userInfoLocal')
-
 
   var settings = {
     dots: true,
