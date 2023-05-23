@@ -16,7 +16,7 @@
 
 .menu_dashboard {
     width: 16.5%;
-    background: #000;
+    background: #fff;
     height: 90vh;
     border-radius: 18px;
     padding: 22px 22px 0 22px;
@@ -51,7 +51,7 @@
     font-weight: 400;
     font-size: 18px;
     cursor: pointer;
-    color: #fff;
+    color: #172b4c;
     display: flex;
     gap: 15px;
     align-items: center

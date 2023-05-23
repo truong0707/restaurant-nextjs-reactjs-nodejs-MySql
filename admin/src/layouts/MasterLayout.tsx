@@ -5,6 +5,7 @@ import { RiUser2Fill } from "react-icons/ri";
 import { ImUserTie } from "react-icons/im";
 import { MdVideoLabel } from "react-icons/md";
 import "./MasterLayout.css";
+import HeaderDashBoard from "../components/header/HeaderDashBoard";
 // import HeaderDashboard from "./componentsAdmin/HeaderDashboard";
 
 interface MasterLayoutAdminProps {
@@ -20,7 +21,7 @@ export default function MasterLayoutAdmin({
         <div className="wrapp_menu_dashboard">
           <div
             className="menu_dashboard"
-            style={{ background: "", color: "#fff" }}
+            style={{ color: "#172b4c" }}
           >
             <ul className="group_logo-name_admin">
               <li>
@@ -67,8 +68,8 @@ export default function MasterLayoutAdmin({
         </div>
 
         <div className="wrap_content_admin">
-          {/* <HeaderDashboard /> */}
-          header
+          <HeaderDashBoard />
+
           {children}
         </div>
       </div>

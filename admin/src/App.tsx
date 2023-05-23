@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import DoashBoard from './pages/DoashBoard';
-import UserManage from "./pages/UserManage";
-import ProductManage from "./pages/ProductManage";
+import UserManage from "./pages/userManager/UserManage";
+import ProductManage from "./pages/productManager/ProductManage";
 import BlogManage from "./pages/BlogManage";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ background: '#F2F1F6', minHeight: '1000px', }} className="App">
       <Router>
         <Routes>
           <Route path='/admin' element={<DoashBoard />} />
@@ -16,7 +16,6 @@ function App() {
           <Route path='/admin/blogs' element={<BlogManage />} />
         </Routes>
       </Router>
-
     </div>
   );
 }
