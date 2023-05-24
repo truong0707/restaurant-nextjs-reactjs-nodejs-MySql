@@ -40,7 +40,9 @@ export default function CheckboxListCate(props: MyCheckboxListProps) {
   const [dataCate, setDataCate] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://restaurant-truongit.onrender.com/api/v1/category`).then(res => setDataCate(res.data.data));
+    axios.get(`https://restaurant-truongit.onrender.com/api/v1/category`).then(res => setDataCate(res.data.data)).then((err)=> {
+      console.log(err)
+    });
     // axios.get(`http://localhost:8080/api/v1/category`).then(res => setDataCate(res.data.data));
   }, []);
 

@@ -5,6 +5,7 @@ import BackDropNav from './BackDrop/BackDropNav';
 import { useDispatch } from 'react-redux';
 import { GET_DATA_USER_LOCAL_STORAGE } from '@/store/redux/constants/localData';
 import { logout } from '@/store/redux/actions/userActions';
+import Footer from './Footer/Footer';
 
 interface MasterLayoutPage {
     children: React.ReactNode;
@@ -51,6 +52,7 @@ export default function MasterLayoutPage({ children }: MasterLayoutPage) {
                 {sideDrawerOpen ? <BackDropNav HandleCloseDrawerToggleClick={handleCloseDrawerToggleClick} /> : null}
             </>
             {children}
+            <Footer />
         </>
     )
 }

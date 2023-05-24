@@ -5,8 +5,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from '@/styles/shop.module.css';
 import { ProductContext } from '@/store/context/Context';
 import CheckboxListCate from '@/components/checkBoxList/CheckBoxListCate';
+import { InferGetStaticPropsType } from 'next';
+import axios from 'axios';
 
-export default function index() {
+
+type Repo = {
+    name: string;
+    stargazers_count: number;
+};
+
+
+export const getStaticProps = async () => {
+    const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
+    const data = res.data.data;
+
+    return { props: { product: data } };
+}
+
+export default function index({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
     const [cc, setCC] = useState(false);
 
     const handleClick = (e: any) => {
@@ -33,28 +49,10 @@ export default function index() {
                 <div className={styles.bodyContentShop}>
                     <div className={styles.wrapper_item}>
                         {
-                            dataFoodProducts.map((data: any) => (
+                            product.map((data: any) => (
                                 <div key={data.food_id} className='items'>
                                     <Link className={styles.linkStyle} href="/detail">
-                                        <CardProduct urlImage="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" />
-                                    </Link>
-                                </div>
-                            ))
-                        }
-                        {
-                            dataFoodProducts.map((data: any) => (
-                                <div key={data.food_id} className='items'>
-                                    <Link className={styles.linkStyle} href="/detail">
-                                        <CardProduct urlImage="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" />
-                                    </Link>
-                                </div>
-                            ))
-                        }
-                        {
-                            dataFoodProducts.map((data: any) => (
-                                <div key={data.food_id} className='items'>
-                                    <Link className={styles.linkStyle} href="/detail">
-                                        <CardProduct urlImage="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                        <CardProduct nameProduct={data.food_name} img={"https://mamuka.rest/upload/resize_cache/iblock/e91/600_600_1/e6i44m6gb0vbqedscbqx49ptweqcmeda.jpg"} />
                                     </Link>
                                 </div>
                             ))
@@ -62,9 +60,8 @@ export default function index() {
                     </div>
 
                     {/*  */}
-                    <div className={styles.wrapper_cateList}><CheckboxListCate/></div>
+                    <div className={styles.wrapper_cateList}><CheckboxListCate /></div>
                 </div>
-
 
             </div>
         </MasterLayoutPage>

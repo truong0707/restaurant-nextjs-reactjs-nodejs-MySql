@@ -9,7 +9,9 @@ export default function CardProductState({ children }: any) {
 
     useEffect(() => {
         // axios.get(`http://localhost:8080/api/v1/food?foodId=all`).then(res => setCardProducts(res.data.data));
-        axios.get(`https://restaurant-truongit.onrender.com/api/v1/food?foodId=all`).then(res => setCardProducts(res.data.data));
+        axios.get(`https://restaurant-truongit.onrender.com/api/v1/food?foodId=all`).then(res => setCardProducts(res.data.data)).then((err) => {
+            console.log(err)
+        });
     }, []);
 
 

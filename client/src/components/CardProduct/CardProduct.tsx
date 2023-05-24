@@ -1,33 +1,43 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { useState } from 'react';
+import { BiSearchAlt2 } from 'react-icons/bi';
+import { AiOutlineDelete } from 'react-icons/ai';
+import styles from '@/styles/styleComponent/cardProduct.module.css';
 
-interface PropsCard {
-  urlImage: String
+interface MyCardProductProps {
+  img: string;
+  nameProduct: string;
 }
 
-export default function CardProduct(props: PropsCard) {
+export default function CardProduct(props: MyCardProductProps) {
+  const [showBackDrop, setShowBackDrop] = useState(false);
+  const handleMove = () => {
+    setShowBackDrop(true)
+  }
+  const handleMoves = () => {
+    setShowBackDrop(false)
+  }
+
   return (
-    <Card sx={{ width: '100%' /* 300 */, marginTop: '20px', borderRadius: '7px' }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="200"
-          image={`${props.urlImage}`}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Gỏi thịt nướng với các loại rau, xà lách, hành ngâm chua và sốt cay
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div onMouseLeave={handleMoves} className={styles.card_product}>
+      <img onMouseEnter={handleMove} className={styles.imageFood} src={props.img} alt='' />
+      {showBackDrop ? <div className={styles.backdrop_card_product}>
+        <ul>
+          <li><BiSearchAlt2 /></li>
+          <li><AiOutlineDelete /></li>
+          <li>s</li>
+        </ul>
+      </div> : null}
+
+      <ul>
+        <li>
+          <p>{props.nameProduct}</p>
+          <p>Lorem Ipsum Dummy Text</p>
+        </li>
+
+        <li>
+          <p><b>205$</b></p>
+        </li>
+      </ul>
+    </div>
   );
 }
