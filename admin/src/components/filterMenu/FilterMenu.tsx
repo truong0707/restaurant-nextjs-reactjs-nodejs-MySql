@@ -4,7 +4,7 @@ import ButtonGroupSelect from '../button/btnGroup/ButtonGroupSelect'
 
 interface MyfilterMenProps {
   titleFilter: string,
-  indexRole? : number,
+  indexType : number,
   setIndexRole? : Dispatch<SetStateAction<number>>
 }
 
@@ -23,7 +23,7 @@ export default function FilterMenu(props: MyfilterMenProps) {
 
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           <ShowModalForm />
-          <ButtonGroupSelect indexRole={props.indexRole} setIndexRole={props.setIndexRole} />
+          <ButtonGroupSelect indexType={props.indexType} setIndexRole={props.setIndexRole} options={['All', 'Quản trị', 'Đầu bếp', 'Người dừng']} />
         </div>
       </div>
       <p style={{

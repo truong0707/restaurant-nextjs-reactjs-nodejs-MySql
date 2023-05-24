@@ -11,12 +11,13 @@ import MenuList from '@mui/material/MenuList';
 
 
 interface MyButtonGroupSelectProps {
-    setIndexRole: any;
-    indexRole: any;
+    setIndexRole: any,
+    indexType: any,
+    options: Array<any>,
 }
-const options = ['All', 'Quản trị', 'Đầu bếp', 'Người dừng'];
 
 export default function ButtonGroupSelect(props: MyButtonGroupSelectProps) {
+    const options = props.options
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     // const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -52,7 +53,7 @@ export default function ButtonGroupSelect(props: MyButtonGroupSelectProps) {
     return (
         <div style={{ marginRight: '10px' }}>
             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button onClick={handleClick}>{options[props.indexRole]}</Button>
+                <Button onClick={handleClick}>{options[props.indexType]}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}
@@ -90,7 +91,7 @@ export default function ButtonGroupSelect(props: MyButtonGroupSelectProps) {
                                         <MenuItem
                                             key={option}
                                             // disabled={index === 2}
-                                            selected={index === props.indexRole}
+                                            selected={index === props.indexType}
                                             onClick={(event) => handleMenuItemClick(event, index)}
                                         >
                                             {option}

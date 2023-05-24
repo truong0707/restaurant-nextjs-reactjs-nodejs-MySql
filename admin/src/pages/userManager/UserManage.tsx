@@ -29,7 +29,7 @@ export default function UserManage() {
   return (
     <div>
       <MasterLayoutAdmin>
-        <FilterMenu titleFilter="Courses" indexRole={indexRole} setIndexRole={setIndexRole} />
+        <FilterMenu titleFilter="Courses" indexType={indexRole} setIndexRole={setIndexRole} />
 
         <div className="wrap_bodyContent_admin">
           {isLoading ? (  
