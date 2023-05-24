@@ -34,22 +34,34 @@ const createFood = async (req, res) => {
         .status(400)
         .json({ message: "Hãy thêm nó voà loại danh mục sản phẩm!" });
     } else {
-      const food = await db.foods.create({
-        food_name,
-        description,
-        price,
-        image,
-        user_id,
-        quantity,
-        type,
-        category_id,
+      const checkCate = await db.categorys.findOne({
+        where: {
+          category_id: category_id,
+        },
       });
 
-      res.status(200).json({
-        data: food,
-        code: 0,
-        message: "Create product completed",
-      });
+      if (!checkCate) {
+        res
+          .status(404)
+          .json({ message: "Không tìm thấy category sản phẩm này! Hãy tạo category cho sản phẩm." });
+      } else {
+        const food = await db.foods.create({
+          food_name,
+          description,
+          price,
+          image,
+          user_id,
+          quantity,
+          type,
+          category_id,
+        });
+
+        res.status(200).json({
+          data: food,
+          code: 0,
+          message: "Create product completed",
+        });
+      }
     }
   } catch (error) {
     console.error(error);

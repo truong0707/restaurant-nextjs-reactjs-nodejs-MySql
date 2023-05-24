@@ -15,18 +15,22 @@ const verifyToken = (token) => {
   }
 };
 
-const authRole = (role_name) => async (req, res, next) => {
+const authRole = (role_name_current) => async (req, res, next) => {
   try {
     const decoded = await verifyToken(
       req.headers["authorization"].split(" ")[1]
     ); // get info user
 
-    /* find model role có id role khớp với admin hay không */
+    console.log(decoded,'ss')
+
+    /* Lấy role_id từ mã token và kiểm tra trong bảng role  */
     const role = await db.roles.findByPk(+decoded.role_id);
 
+    console.log(role, 'role')
+
     /* kiểm tra  */
-    if (role.role_name !== role_name) {
-      throw new Error(`${role_name} mới có quyền truy cập!`);
+    if (role.role_name !== role_name_current) {
+      throw new Error(`${role_name_current} mới có quyền truy cập!`);
     }
     req.user = decoded;
     next();
@@ -69,6 +73,8 @@ const authChefOrAdmin = async (req, res, next) => {
     const decoded = await verifyToken(
       req.headers["authorization"].split(" ")[1]
     ); // get info user
+
+    console.log(decoded, 'đ')
 
     // /* find model role có id role khớp với admin hay không */
     const findUser = await db.roles.findByPk(+decoded.role_id);

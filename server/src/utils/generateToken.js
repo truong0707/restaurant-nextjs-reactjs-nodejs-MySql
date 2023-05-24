@@ -7,6 +7,7 @@ const generateToken = async (user) => {
     return jwt.sign({
         id: user.id,
         role: nameRole,
+        role_id: user.role_id,
         email: user.email,
         name: user.name,
         user_id: user.user_id
