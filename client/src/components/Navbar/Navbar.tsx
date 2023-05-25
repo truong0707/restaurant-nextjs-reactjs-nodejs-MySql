@@ -4,7 +4,12 @@ import Link from 'next/link';
 import DrawerToggleButton from '../SideDrawer.js/DrawerToggleButton';
 import { StateStore } from '@/pages/login';
 import { useDispatch, useSelector } from 'react-redux';
+import { BsChatDots } from "react-icons/bs";
 import styles from '@/styles/navbar.module.css';
+import MenuIcons from '../MenuIcons/MenuIcons';
+import { RiShoppingCartLine } from 'react-icons/ri';
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { GiSelfLove } from "react-icons/gi";
 
 
 interface MyProps {
@@ -53,37 +58,58 @@ export default function NavBar(props: MyProps) {
                                 <li>Liên hệ</li>
                             </Link>
 
+                            {/* role menu */}
                             {
-                                props.roleMenu ?
-                                    <Link className={styles.item__bar} href={`/${props.roleMenu}`}>
-                                        <li>{props.roleMenu}</li>
-                                    </Link> : null
+                                props.roleMenu && props.roleMenu !== "customer" ? <Link className={styles.item__bar} href={`/${props.roleMenu}`}>
+                                    <li>
+                                        {
+                                            props.roleMenu === 'chef' ? 'Vào bếp' : props.roleMenu
+                                        }
+                                    </li>
+                                </Link> : null
                             }
                         </ul>
 
                     </div>
                     <div className={styles.spacer}></div>
 
-                    <div>
-                        <ul>
+                    {/* <div>
+                        <ul style={{ display: 'flex', gap: '1px' }}>
                             <li style={{ marginTop: '12px', listStyle: 'none' }} className={styles.item__bar__card} >
-                                {/* cart */}
-                                {/* <CartDrawerToggle /> */}
-                                {/* {cartItems.length > 0 && <div className='item__count'>
-                                                <span><b>{cartItems.length}</b></span>
-                                            </div>} */}
+                                <MenuIcons
+                                    typeContent="chat"
+                                    iconMenu={<BsChatDots style={{ fontSize: "20px" }} />}
+                                />
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
                     <div className={styles.toolbar__navigation_user_store}>
                         <ul>
                             {userInfoLocal && userInfoLocal.data ? (
                                 <>
+                                    <MenuIcons
+                                        typeContent="cart"
+                                        iconMenu={<RiShoppingCartLine style={{ fontSize: "20px" }} />}
+                                    />
+
+                                    <MenuIcons
+                                        typeContent="notification"
+                                        iconMenu={
+                                            <IoMdNotificationsOutline style={{ fontSize: "25px" }} />
+                                        }
+                                    />
+
+                                    <MenuIcons
+                                        typeContent="loveProduct"
+                                        iconMenu={<GiSelfLove style={{ fontSize: "20px" }} />}
+                                    />
+
+
                                     <Link style={{ textDecoration: 'none' }} href='/profile'>
-                                        <li style={{ minWidth: '250px', textAlign: 'end', alignItems: 'center', height: '50px' }} className={`${styles.profile} ${styles.item__bar}`} /* onClick={handleclickProfile} */>
+                                        <li style={{ /* minWidth: '200px', */ textAlign: 'end', alignItems: 'center', height: '55px' }} className={`${styles.profile} ${styles.item__bar}`} /* onClick={handleclickProfile} */>
                                             <img style={{ marginRight: '7px' }} src='https://avatars.githubusercontent.com/u/70809618?s=400&u=4fa5bdd589e6f6bb0f6377be69ba8146f75d389b&v=4' alt='' className={styles.avatar__user} />
-                                            Hi, {userInfoLocal.data.name}
+                                            {/*  Hi, {userInfoLocal.data.name} */}
                                         </li>
                                     </Link>
 

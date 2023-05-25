@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 // import { productDetailReducer, productListHomeReducer, productListReducer } from "./reducers/ProductReducer";
-import { userLoginReduder, userRegisterReducer } from "./redux/reducers/userReducer";
-import { getDataReducer } from "./redux/reducers/localDataReducer";
+import { userLoginReduder, userRegisterReducer } from "./reducers/userReducer";
+import { getDataReducer } from "./reducers/localDataReducer";
 // import CC from "./CC";
 // import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 

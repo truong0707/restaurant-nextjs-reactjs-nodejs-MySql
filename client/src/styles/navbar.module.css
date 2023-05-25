@@ -75,7 +75,7 @@
 /* phần nav login */
 .toolbar__navigation_user_store ul li {
     line-height: 50px;
-    width: 65px;
+    /* width: 65px; */
     text-align: center;
 }
 .toolbar__navigation_user_store li {
