@@ -21,12 +21,9 @@ const authRole = (role_name_current) => async (req, res, next) => {
       req.headers["authorization"].split(" ")[1]
     ); // get info user
 
-    console.log(decoded,'ss')
 
     /* Lấy role_id từ mã token và kiểm tra trong bảng role  */
     const role = await db.roles.findByPk(+decoded.role_id);
-
-    console.log(role, 'role')
 
     /* kiểm tra  */
     if (role.role_name !== role_name_current) {

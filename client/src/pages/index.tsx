@@ -9,8 +9,6 @@ import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import styles from '@/styles/Home.module.css'
 import { useSelector } from 'react-redux';
 import { StateStore } from './login';
-import { useContext, useEffect } from "react";
-import { ProductContext } from '@/store/context/Context';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -86,7 +84,6 @@ export default function Home() {
 
       <div>
         <MasterLayout>
-          {/* <CC/> */}
           <div>
             <div className={styles.wrap_home}>
               <img className={styles.main_img} src="https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1551438228969-H0FPV1FO3W5B0QL328AS/chup-anh-thuc-an-1.jpg" alt="main-img" />
@@ -185,7 +182,7 @@ export default function Home() {
                     </ul>
                   </div>
                 </div>
-                {/*                 <Footer /> */}
+                <Footer />
               </div>
             </div>
           </div>

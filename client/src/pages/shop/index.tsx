@@ -7,6 +7,8 @@ import { ProductContext } from '@/store/context/Context';
 import CheckboxListCate from '@/components/checkBoxList/CheckBoxListCate';
 import { InferGetStaticPropsType } from 'next';
 import axios from 'axios';
+import Footer from '@/components/Footer/Footer';
+import { checkDecodeJWT } from '@/utils/CheckDecodeJWT';
 
 
 type Repo = {
@@ -37,7 +39,7 @@ export default function index({ product }: InferGetStaticPropsType<typeof getSta
     const { dataFoodProducts } = useContext(ProductContext);
 
     useEffect(() => {
-        console.log(dataFoodProducts, 'ss')
+        // console.log(dataFoodProducts, 'ss')
     })
 
 
@@ -64,6 +66,7 @@ export default function index({ product }: InferGetStaticPropsType<typeof getSta
                 </div>
 
             </div>
+            <Footer />
         </MasterLayoutPage>
     )
 }

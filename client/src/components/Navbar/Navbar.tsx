@@ -9,14 +9,13 @@ import styles from '@/styles/navbar.module.css';
 
 interface MyProps {
     drawerToggleClick: () => void;
-    handleLogout: () => void
+    handleLogout: () => void;
+    roleMenu: string | null;
 }
 
 export default function NavBar(props: MyProps) {
     const userDataLocal = useSelector((state: StateStore) => state.useDataLocal);
     const { userInfoLocal } = userDataLocal;
-
-
 
     return (
         <>
@@ -39,7 +38,7 @@ export default function NavBar(props: MyProps) {
                             </Link>
 
                             <Link className={styles.item__bar} href="/shop">
-                                <li>Shop</li>
+                                <li>Menu</li>
                             </Link>
 
                             <Link className={styles.item__bar} href="/blog">
@@ -47,12 +46,19 @@ export default function NavBar(props: MyProps) {
                             </Link>
 
                             <Link className={styles.item__bar} href="/news">
-                                <li>News</li>
+                                <li>Tin Tức</li>
                             </Link>
 
                             <Link className={styles.item__bar} href="/contacts">
-                                <li>Contacts</li>
+                                <li>Liên hệ</li>
                             </Link>
+
+                            {
+                                props.roleMenu ?
+                                    <Link className={styles.item__bar} href={`/${props.roleMenu}`}>
+                                        <li>{props.roleMenu}</li>
+                                    </Link> : null
+                            }
                         </ul>
 
                     </div>

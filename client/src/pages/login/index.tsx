@@ -6,7 +6,7 @@ import ErrorAlert from '@/components/Alert/ErrorAlert';
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
 import styles from '@/styles/styleComponent/loginAndRegis.module.css'
 import Link from 'next/link';
-import { checkRole } from '@/utils/CheckRole';
+import { checkRole } from '@/utils/checkRole';
 
 
 export interface StateStore {
