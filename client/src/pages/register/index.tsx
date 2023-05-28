@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router"
 import ErrorAlert from "../../components/Alert/ErrorAlert";
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
-import styles from '@/styles/styleComponent/loginAndRegis.module.css'
-import { checkRole } from '@/utils/checkRole';
+import styles from '@/styles/styleComponent/loginAndRegis.module.css';
+import { checkRole } from '@/utils/CheckRole';
 
 export default function index() {
   const [inputs, setInputs] = useState<TypeObjectInput>({});
