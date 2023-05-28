@@ -1,4 +1,4 @@
-import MasterLayoutPage from '@/components/MasterLayoutPage'
+import MasterLayoutPage from '@/pages/layout/MasterLayoutPage'
 import React from 'react'
 
 export default function Blog() {

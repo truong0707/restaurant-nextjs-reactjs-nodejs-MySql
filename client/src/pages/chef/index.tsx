@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer/Footer'
-import MasterLayoutPage from '@/components/MasterLayoutPage'
+import MasterLayoutPage from '@/pages/layout/MasterLayoutPage'
 import React from 'react'
 import DashBoardChef from '../layout/DashBoardChef'
 

@@ -1,5 +1,5 @@
 import CardProduct from '@/components/CardProduct/CardProduct';
-import MasterLayoutPage from '@/components/MasterLayoutPage'
+import MasterLayoutPage from '@/pages/layout/MasterLayoutPage'
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
 import styles from '@/styles/shop.module.css';
@@ -17,8 +17,8 @@ type Repo = {
 };
 
 export const getStaticProps = async () => {
-    const res = await axios.get('https://restaurant-truongit.onrender.com/api/v1/food?foodId=all');
-    // const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
+    // const res = await axios.get('https://restaurant-truongit.onrender.com/api/v1/food?foodId=all');
+    const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
     
     const data = res.data.data;
 
@@ -54,7 +54,7 @@ export default function index({ product }: InferGetStaticPropsType<typeof getSta
                         {
                             product.map((data: any) => (
                                 <div key={data.food_id} className='items'>
-                                    <Link className={styles.linkStyle} href="/detail">
+                                    <Link className={styles.linkStyle} href={`/product/${data.food_id}`}>
                                         <CardProduct nameProduct={data.food_name} img={"https://mamuka.rest/upload/resize_cache/iblock/e91/600_600_1/e6i44m6gb0vbqedscbqx49ptweqcmeda.jpg"} />
                                     </Link>
                                 </div>

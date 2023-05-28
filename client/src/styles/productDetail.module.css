@@ -1,0 +1,7 @@
+.main_Info_Product {
+    display: flex;
+    gap: 15px
+}
+.main_Info_Product img {
+    width: 440px;
+}

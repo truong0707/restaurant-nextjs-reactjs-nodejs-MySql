@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import MasterLayout from '@/components/MasterLayoutPage'
+import MasterLayout from '@/pages/layout/MasterLayoutPage'
 import Slider from "react-slick";
 import Footer from '@/components/Footer/Footer';
 import "../../node_modules/slick-carousel/slick/slick.css";

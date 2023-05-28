@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import NavBar from './Navbar/Navbar';
-import SideDrawer from './SideDrawer.js/SideDrawer';
-import BackDropNav from './BackDrop/BackDropNav';
+import NavBar from '../../components/Navbar/Navbar';
+import SideDrawer from '../../components/SideDrawer.js/SideDrawer';
+import BackDropNav from '../../components/BackDrop/BackDropNav';
 import { useDispatch } from 'react-redux';
 import { GET_DATA_USER_LOCAL_STORAGE } from '@/store/redux/constants/localData';
 import { logout } from '@/store/redux/actions/userActions';
@@ -66,7 +66,6 @@ export default function MasterLayoutPage({ children }: MasterLayoutPage) {
                 {sideDrawerOpen ? <BackDropNav HandleCloseDrawerToggleClick={handleCloseDrawerToggleClick} /> : null}
             </>
             {children}
-            {inFoDecode? console.log(inFoDecode.role, "inFoDecode.role") : "ss"}
         </>
     )
 }
