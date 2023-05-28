@@ -16,9 +16,10 @@ type Repo = {
     stargazers_count: number;
 };
 
-
 export const getStaticProps = async () => {
-    const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
+    const res = await axios.get('https://restaurant-truongit.onrender.com//api/v1/food?foodId=all');
+    // const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
+    
     const data = res.data.data;
 
     return { props: { product: data } };
