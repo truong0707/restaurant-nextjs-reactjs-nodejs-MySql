@@ -1,4 +1,4 @@
-import axiosClient from "../apiAxios/axios";
+import axiosClient from "@/pages/apiAxios/axios";
 
 const productServices = {
   getProductApi: async (id: string, role: any) => {

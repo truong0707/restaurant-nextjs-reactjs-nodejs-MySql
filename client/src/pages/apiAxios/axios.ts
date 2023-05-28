@@ -2,7 +2,8 @@ import { getUserToken } from "@/utils/userToken";
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8080/",
+  // baseURL: "http://localhost:8080/",
+  baseURL: "  https://restaurant-truongit.onrender.com",
 });
 
 //config header axios
