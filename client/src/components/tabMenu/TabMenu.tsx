@@ -37,7 +37,12 @@ function a11yProps(index: number) {
   };
 }
 
-export default function TabMenu() {
+interface TabMenuProps {
+  titleMenu: any,
+  content: any,
+}
+
+export default function TabMenu(props:TabMenuProps) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -48,11 +53,14 @@ export default function TabMenu() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          {
+            props.titleMenu.map((menu: string, index: number) => (
+              <Tab label={menu} {...a11yProps(index)} />
+            ))
+          }
         </Tabs>
       </Box>
+
       <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
@@ -62,6 +70,7 @@ export default function TabMenu() {
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
+      
     </Box>
   );
 }
