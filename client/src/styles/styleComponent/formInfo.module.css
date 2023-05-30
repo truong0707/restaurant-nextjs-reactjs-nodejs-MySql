@@ -1,0 +1,17 @@
+.form_info_productMain .wrapp_input_formInfoProduct {
+    width: 32%;
+    margin-top: 14px;
+}
+.form_info_productMain .wrapp_input_formInfoProduct input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px rgb(214, 214, 214) solid
+}
+
+@media only screen and (max-width: 610px) {
+    .form_info_productMain .wrapp_input_formInfoProduct {
+        width: 100%;
+        margin-top: 14px;
+    }
+}

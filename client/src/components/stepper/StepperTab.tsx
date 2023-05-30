@@ -5,8 +5,10 @@ import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Stack } from '@mui/material';
+import FormMainInfoProduct from '../FormInfo/FormMainInfoProduct';
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+const steps = ['Thông tin chính về món', 'Thêm ảnh của món', 'Create an ad'];
 
 export default function StepperTab() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -84,9 +86,16 @@ export default function StepperTab() {
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
-                            Step {activeStep + 1}
-                        </Typography>
+                        <div style={{ marginTop: '20px', marginBottom: '20px', padding:'10px'}}>
+                            {/* Step {activeStep + 1}, */}
+                            {
+                                activeStep + 1 === 1 ? 
+                                    <FormMainInfoProduct /> :
+                                    activeStep + 1 === 2 ? <>ok2</> :
+                                        activeStep + 1 === 3 ? <>ok3</> : null
+                            }
+                        </div>
+
                         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                             <Button
                                 color="inherit"
