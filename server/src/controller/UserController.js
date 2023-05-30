@@ -9,7 +9,6 @@ const { sequelize } = require("../configs/ConnectDb");
 const postCreateUser = async (req, res) => {
   const { name, email, password, confirmPass, role_id } = req.body;
 
-  console.log(name, email, password, confirmPass, role_id);
   if (!name || !email || !password || !confirmPass || !role_id) {
     return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin!" });
   }
@@ -44,6 +43,21 @@ const postCreateUser = async (req, res) => {
     } catch (error) {
       console.log("err", error);
     }
+  }
+};
+
+/* Create Role */
+const postCreateRole = async (req, res) => {
+  /* create role */;
+  try {
+    await db.roles.create({
+      role_id: 3,
+      role_name: 'customer',
+    });
+
+    res.json({ message: "Tạo tài role thành công!" });
+  } catch (error) {
+    console.log("err", error);
   }
 };
 
@@ -88,6 +102,7 @@ const postLogin = async (req, res) => {
         .status(200)
         .json({ data: userLogin, code: 0, message: "Đăng nhập thành công!" });
     } else {
+      
       return res
         .status(400)
         .json({ message: "Tài khoản không tồn tại trên hệ thống!" });
@@ -112,7 +127,7 @@ let getUsers = async (req, res) => {
           where: { role_id: role },
           attributes: ["user_id", "name", "email"],
         });
-        console.log(Alluser,"cos");
+        console.log(Alluser, "cos");
       } else {
         Alluser = await db.users.findAll({
           attributes: ["user_id", "name", "email"],
@@ -200,7 +215,9 @@ const postRegister = async (req, res) => {
         role_id: role ? role : 3,
       });
 
-      return res.status(200).json({ message: "Register thành công!", data: newUser });
+      return res
+        .status(200)
+        .json({ message: "Register thành công!", data: newUser });
     } catch (error) {
       console.log("err", error);
     }
@@ -341,6 +358,7 @@ module.exports = {
   postRegister,
   postLogin,
   deleteUserById,
+  postCreateRole,
   // getUsersAdmin,
   EditUserById,
   Logout,

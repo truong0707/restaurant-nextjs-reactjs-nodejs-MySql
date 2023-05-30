@@ -1,8 +1,6 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Food extends Model {
-    
-  }
+  class Food extends Model {}
   Food.init(
     {
       food_id: {
@@ -20,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      price_promotional: {
         type: DataTypes.FLOAT,
         allowNull: false,
       },

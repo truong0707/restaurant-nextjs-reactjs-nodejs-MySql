@@ -37,7 +37,6 @@ export default function MasterLayoutPage({ children }: MasterLayoutPage) {
 
     }, []);
 
-
     // Xử lý logout
     const logAutPromise = logout();
     const handleLogout = () => {

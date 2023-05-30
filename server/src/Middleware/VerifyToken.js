@@ -81,8 +81,9 @@ const authChefOrAdmin = async (req, res, next) => {
       req.user = decoded;
       next();
     } else {
-      throw new Error(`Ko có quyền truy cập!`);
+      throw new Error(`Chỉ có Đầu bếp hoặc Admin mới có quyền truy cập!`);
     }
+    
   } catch (err) {
     console.log(err);
     return res.status(401).json({ message: err.message });

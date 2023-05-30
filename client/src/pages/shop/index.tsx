@@ -10,19 +10,18 @@ import axios from 'axios';
 import Footer from '@/components/Footer/Footer';
 import { checkDecodeJWT } from '@/utils/CheckDecodeJWT';
 
-
-type Repo = {
-    name: string;
-    stargazers_count: number;
-};
-
 export const getStaticProps = async () => {
-    const res = await axios.get('https://restaurant-truongit.onrender.com/api/v1/food?foodId=all');
-    // const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
-    
-    const data = res.data.data;
+    try {
+        const res = await axios.get('https://restaurant-truongit.onrender.com/api/v1/food?foodId=all');
+        // const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all');
 
-    return { props: { product: data } };
+        const data = res.data.data;
+
+        return { props: { product: data } };
+    } catch (error) {
+        console.error(error);
+        return { props: { product: [] } }; // Trả về một mảng rỗng hoặc giá trị mặc định tùy thuộc vào yêu cầu của ứng dụng của bạn
+    }
 }
 
 export default function index({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -37,11 +36,7 @@ export default function index({ product }: InferGetStaticPropsType<typeof getSta
         setCC(false);
     }
 
-    const { dataFoodProducts } = useContext(ProductContext);
-
-    useEffect(() => {
-        // console.log(dataFoodProducts, 'ss')
-    })
+    // const { dataFoodProducts } = useContext(ProductContext);
 
 
     return (

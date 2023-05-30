@@ -37,7 +37,7 @@ export default function DashBoardChef({
                 className={styles.list_nemu_dashboard}
                 style={{ padding: 0, marginTop: "20px" }}
               >
-                <Link className={styles.link} href="/admin">
+                <Link className={styles.link} href="/chef">
                   <li>
                     <AiTwotoneHome />
                     <p className={styles.item}>Dashboard</p>
@@ -51,10 +51,10 @@ export default function DashBoardChef({
                   </li>
                 </Link>
 
-                <Link className={styles.link} href="/admin/products">
+                <Link className={styles.link} href="/chef/YourProducts">
                   <li>
                     <ImUserTie />
-                    <p className={styles.item}>Product</p>
+                    <p className={styles.item}>Món ăn của bạn</p>
                   </li>
                 </Link>
 

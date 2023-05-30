@@ -8,6 +8,7 @@ let router = express.Router();
 
 const initUserRoutes = (app) => {
     /* admin */
+    router.post('/user/role', UserController.postCreateRole);
     router.post('/user/create', authAdmin, UserController.postCreateUser); // http://localhost:8080/api/v1/user/create
     router.post('/user/login', UserController.postLogin);       // http://localhost:8080/api/v1/user/login
     router.post('/user/register', UserController.postRegister); // http://localhost:8080/api/v1/user/register

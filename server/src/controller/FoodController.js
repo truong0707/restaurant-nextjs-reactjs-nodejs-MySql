@@ -8,6 +8,7 @@ const createFood = async (req, res) => {
       food_name,
       description,
       price,
+      price_promotional,
       image,
       quantity,
       type,
@@ -21,6 +22,8 @@ const createFood = async (req, res) => {
       return res.status(400).json({ message: "Mô tả về món ăn!" });
     } else if (!price) {
       return res.status(400).json({ message: "Hãy để giá cho món ăn!" });
+    } else if (!price_promotional) {
+      return res.status(400).json({ message: "Hãy để giá khuyến mãi cho món ăn!" });
     } else if (!image) {
       return res.status(400).json({ message: "Món ăn phải có ảnh!" });
     } else if (!quantity) {
@@ -49,6 +52,7 @@ const createFood = async (req, res) => {
           food_name,
           description,
           price,
+          price_promotional,
           image,
           user_id,
           quantity,
@@ -82,6 +86,7 @@ const getFood = async (req, res) => {
           "food_id",
           "food_name",
           "price",
+          "price_promotional",
           "image",
           "quantity",
           "category_id",
@@ -159,6 +164,7 @@ const postAddFoodCate = async (req, res) => {
         description: infoFood.description,
         cateId: findCateFood.categoryId,
         price: infoFood.price,
+        price_promotional: infoFood.price_promotional,
         quantity: infoFood.quantity,
       });
 

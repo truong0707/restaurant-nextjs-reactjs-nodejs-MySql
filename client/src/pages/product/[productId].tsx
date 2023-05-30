@@ -5,10 +5,58 @@ import Footer from '@/components/Footer/Footer';
 import styles from '@/styles/productDetail.module.css'
 import TabMenu from '@/components/tabMenu/TabMenu';
 import Head from 'next/head';
+import axios from 'axios';
+import { InferGetStaticPropsType } from 'next';
+import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
 
-export default function productDetail() {
-  const router = useRouter();
-  const idProduct = router.query.productId;
+
+
+export const getStaticPaths = async () => {
+  try {
+    const res = await axios.get('http://localhost:8080/api/v1/food?foodId=all'); // Lấy danh sách sản phẩm từ API
+    const products = res.data.data;
+
+    console.log(products, "products")
+
+    const paths = products.map((data: any) => ({
+      params: { productId: data.food_id.toString() },
+    }));
+
+    return {
+      paths,
+      fallback: false,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+};
+
+export const getStaticProps = async ({ params }: any) => {
+  const productId = params.productId;
+
+  try {
+    const res = await axios.get(`http://localhost:8080/api/v1/food?foodId=all`); // Lấy thông tin chi tiết sản phẩm từ API
+    const product = res.data.data;
+
+    return { props: { product } };
+  } catch (error) {
+    console.error(error);
+    return { props: { product: null } };
+  }
+};
+
+export default function productDetail({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
+  // const router = useRouter();
+  // const idProduct = router.query.productId;
+
+
+  // if (!product) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <>
@@ -21,38 +69,42 @@ export default function productDetail() {
 
       <MasterLayoutPage>
         <div className='wrapp_product_detail' style={{ paddingTop: '100px', width: "90%", margin: 'auto', paddingBottom: '20px' }}>
-          <div className={styles.main_Info_Product}>
-            <img src='https://mamuka.rest/upload/resize_cache/iblock/c04/600_600_1/n0kuvsoni8wj1vrl0qna63i955kqmits.jpg' alt='anh_san_pham' />
-            <div>
-              <ul className={styles.price_product}><p style={{ color: '#BF014B', fontSize: '25px' }}><b>$18.00</b></p> <p style={{ textDecoration: 'line-through', marginTop: '6px', fontSize: '18px', color: '#777777' }}><b>$20.00</b></p></ul>
-              <h3>Parmesan Vegetable</h3>
+          {
+            !product ? <BackdropProgressLoading/> : product.length === 0 ? <>Không có sp</> :
+              <>
+                <div className={styles.main_Info_Product}>
+                  <img src='https://mamuka.rest/upload/resize_cache/iblock/c04/600_600_1/n0kuvsoni8wj1vrl0qna63i955kqmits.jpg' alt='anh_san_pham' />
+                  <div>
+                    <ul className={styles.price_product}><p style={{ color: '#BF014B', fontSize: '25px' }}><b>${product.price}</b></p> <p style={{ textDecoration: 'line-through', marginTop: '6px', fontSize: '18px', color: '#777777' }}><b>$20.00</b></p></ul>
+                    <h3>{product.food_name}: {product.food_id}</h3>
+                    <p>{product.description}</p>
 
-              <ul>
-                <li>Lay chicken thighs into the bottom of a 4-quart slow cooker.</li>
-                <li>Whisk soy sauce, ketchup, honey, garlic, and basil together in a bowl; pour over the chicken.</li>
-              </ul>
+                    <ul>
+                      <li>Lay chicken thighs into the bottom of a 4-quart slow cooker.</li>
+                      <li>Whisk soy sauce, ketchup, honey, garlic, and basil together in a bowl; pour over the chicken.</li>
+                    </ul>
 
 
-              <div className={styles.wrap_group_options_order}>
-                <p>Quality: </p>
-                <ul>
-                  <li><button>-</button></li>
-                  <li><p>2</p></li>
-                  <li><button>+</button></li>
-                </ul>
+                    <div className={styles.wrap_group_options_order}>
+                      <p>Quality: </p>
+                      <ul>
+                        <li><button>-</button></li>
+                        <li><p>2</p></li>
+                        <li><button>+</button></li>
+                      </ul>
 
-                <button className={styles.add_to_cart}>Add to cart</button>
+                      <button className={styles.add_to_cart}>Add to cart</button>
 
-                <p>Tim</p>
-              </div>
-            </div>
-          </div>
-
+                      <p>Tim</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+          }
           <div className={styles.more_decription_product}>
             <TabMenu titleMenu={["Description", "Additional Information", "Reviews (2)",]} content={["Assertively conceptualize parallel process improvements through user friendly action items. Interactively cultivate interdependent customer service without clicks-and-mortar e-services. Proactively cultivate go forward testing procedures with accurate quality vectors. Globally embrace ethical functionalities via empowered scenarios. Phosfluorescently restore highly efficient opportunities and client-focused infomediaries.", "Enthusiastically transition multidisciplinary “outside the box” thinking without premium networks. Progressively supply clicks-and-mortar human capital through enterprise-wide web services. Objectively provide access to extensible processes through 24/365 solutions. Professionally actualize", "Your email address will not be published. Required fields are marked *"]} />
           </div>
         </div>
-
         <Footer />
       </MasterLayoutPage>
     </>
