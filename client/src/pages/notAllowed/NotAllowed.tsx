@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MasterLayoutPage from '../layout/MasterLayoutPage'
 import Notification from '@/components/Alert/Notification'
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
+import styles from '@/styles/notAllowed.module.css';
 
 export default function NotAllowed() {
     const [render, setRender] = useState(false);
@@ -22,7 +23,7 @@ export default function NotAllowed() {
             {
                 render ? <>
                     <p style={{ marginTop: '30px' }}>.</p>
-                    <div style={{ width: '60%', height: '200px', background: '#fff', margin: 'auto', padding: '20px', borderRadius: '10px', marginTop: '60px' }}>
+                    <div className={styles.wrapp_notAllowed}>
                         <Notification />
                     </div>
                 </> : <BackdropProgressLoading/>

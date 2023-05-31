@@ -15,7 +15,6 @@ export default function YourProducts() {
         const infoUser = parserDecodeJWT(token);
 
         if (infoUser) {
-            console.log(infoUser);
             if (infoUser.role === 'chef') {
                 setRender(true);
             } else {

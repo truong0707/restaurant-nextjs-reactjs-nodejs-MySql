@@ -1,9 +1,8 @@
 import CardProduct from '@/components/CardProduct/CardProduct';
 import MasterLayoutPage from '@/pages/layout/MasterLayoutPage'
 import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/shop.module.css';
-import { ProductContext } from '@/store/context/Context';
 import CheckboxListCate from '@/components/checkBoxList/CheckBoxListCate';
 import { InferGetStaticPropsType } from 'next';
 import axios from 'axios';

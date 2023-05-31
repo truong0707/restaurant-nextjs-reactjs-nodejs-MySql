@@ -11,7 +11,7 @@ import MenuList from '@mui/material/MenuList';
 
 
 interface MyButtonGroupSelectProps {
-    setIndexRole: any,
+    setIndexType: any,
     indexType: any,
     options: Array<any>,
 }
@@ -29,7 +29,7 @@ export default function SelectBtn(props: MyButtonGroupSelectProps) {
         event: React.MouseEvent<HTMLLIElement, MouseEvent>,
         index: number,
     ) => {
-        props.setIndexRole(index);
+        props.setIndexType(index);
         setOpen(false);
     };
 

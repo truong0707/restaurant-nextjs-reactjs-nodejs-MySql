@@ -1,14 +1,12 @@
-import { useRouter } from 'next/router'
 import React from 'react'
 import MasterLayoutPage from '../layout/MasterLayoutPage';
 import Footer from '@/components/Footer/Footer';
-import styles from '@/styles/productDetail.module.css'
 import TabMenu from '@/components/tabMenu/TabMenu';
 import Head from 'next/head';
 import axios from 'axios';
 import { InferGetStaticPropsType } from 'next';
 import BackdropProgressLoading from '@/components/BackdropProgressLoading/BackdropProgressLoading';
-
+import styles from '@/styles/productDetail.module.css'
 
 
 export const getStaticPaths = async () => {

@@ -86,10 +86,10 @@ export default function StepperTab() {
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <div style={{ marginTop: '20px', marginBottom: '20px', padding:'10px'}}>
+                        <div style={{ marginTop: '20px', marginBottom: '20px', padding: '10px' }}>
                             {/* Step {activeStep + 1}, */}
                             {
-                                activeStep + 1 === 1 ? 
+                                activeStep + 1 === 1 ?
                                     <FormMainInfoProduct /> :
                                     activeStep + 1 === 2 ? <>ok2</> :
                                         activeStep + 1 === 3 ? <>ok3</> : null
