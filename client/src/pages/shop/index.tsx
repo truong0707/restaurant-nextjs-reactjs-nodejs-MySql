@@ -8,7 +8,7 @@ import CheckboxListCate from '@/components/checkBoxList/CheckBoxListCate';
 import { InferGetStaticPropsType } from 'next';
 import axios from 'axios';
 import Footer from '@/components/Footer/Footer';
-import { checkDecodeJWT } from '@/utils/CheckDecodeJWT';
+import { checkDecodeJWT } from '@/utils/parserDecodeJWT';
 
 export const getStaticProps = async () => {
     try {

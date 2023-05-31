@@ -5,7 +5,7 @@ import BackDropNav from '../../components/BackDrop/BackDropNav';
 import { useDispatch } from 'react-redux';
 import { GET_DATA_USER_LOCAL_STORAGE } from '@/store/redux/constants/localData';
 import { logout } from '@/store/redux/actions/userActions';
-import { checkDecodeJWT } from '@/utils/CheckDecodeJWT';
+import { parserDecodeJWT } from '@/utils/parserDecodeJWT';
 
 interface MasterLayoutPage {
     children: React.ReactNode;
@@ -27,8 +27,8 @@ export default function MasterLayoutPage({ children }: MasterLayoutPage) {
 
             /* Kiểm tra role hiện tại */
             const tokenCurrent = parserDataUser.data.token;            
-            checkDecodeJWT(tokenCurrent);
-            const decodeInfoUser = checkDecodeJWT(tokenCurrent);
+            parserDecodeJWT(tokenCurrent);
+            const decodeInfoUser = parserDecodeJWT(tokenCurrent);
 
             if (decodeInfoUser) {
                 setInFoDecode(decodeInfoUser)

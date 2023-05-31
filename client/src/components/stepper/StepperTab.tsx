@@ -106,9 +106,9 @@ export default function StepperTab() {
                                 Back
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
-                            <Button onClick={handleNext} sx={{ mr: 1 }}>
+                            {/* <Button onClick={handleNext} sx={{ mr: 1 }}>
                                 Next
-                            </Button>
+                            </Button> */}
                             {activeStep !== steps.length &&
                                 (completed[activeStep] ? (
                                     <Typography variant="caption" sx={{ display: 'inline-block' }}>
